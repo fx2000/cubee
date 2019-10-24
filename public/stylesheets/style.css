@@ -1,8 +1,30 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*
+coral: (252,76,98)
+gris: 51,51,51)
+azul oscuro: (70,66,139)
+amarillo: (255,255,136)
+turquesa: (2,200,167)
+*/
+
+*,
+*::after,
+*::before{
+  margin: 0;
+  padding: 0;
+  background-color: rgb(70,66,139);
 }
 
-a {
-  color: #00B7FF;
+
+/*LANDING*/
+.landing-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+.landing-img{
+  height: 100vh;
+}
+.landing{
+  height: max-content;
+}
+
