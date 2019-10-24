@@ -15,7 +15,7 @@ The __MVP__ will cover the following:
 - __Login:__ A sign in form for existing users.
 - __Profile:__ A profile page where a user can view/edit their personal details or delete their account completely.
 - __Stories:__ One of the main pages of the application, it displays all user stories, allow sorting or searching by keywords or tags, upvoting or downvoting.
--__Create:__ The other main component of the app, it allows a user to randomly roll a set number of dice and create their own story.
+- __Create:__ The other main component of the app, it allows a user to randomly roll a set number of dice and create their own story.
 
 Landing Page, Signup and Log in are public pages, all other sections are private and require an active user session.
 
