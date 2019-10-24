@@ -48,6 +48,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: "cubee-secret",
   cookie: { maxAge: 60000 },
+  resave: true,
+  saveUninitialized: true,
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 24 * 60 * 60 // 1 day
