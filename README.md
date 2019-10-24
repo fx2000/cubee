@@ -43,10 +43,13 @@ __User__
   
 __Story__
   - __id__ (unique, auto-generated)
+  - __creatorId__ (unique)
   - __dice__ (Array of objects, required)
   - __tags__ (array of strings, required)
   - __story__ (String, required)
   - __votes__ (Array of objects)
+  - __private__ (bool, default false)
+  - __restricted__ (bool, default false)
 
 __Die__
   - __id__ (unique, auto-generated)
@@ -67,8 +70,7 @@ __Die__
     - /delete
     - /vote
     - /create
-  
-  
+
 ## Links
 
 ### Trello
