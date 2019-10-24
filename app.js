@@ -12,6 +12,7 @@ const MongoStore = require("connect-mongo")(session);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const storiesRouter = require('./routes/stories');
 
 // Get app name
 const app_name = require('./package.json').name;
@@ -22,6 +23,7 @@ const app = express();
 mongoose
   .connect(`mongodb://localhost/${app_name}`, {
     useNewUrlParser: true,
+    useCreateIndex: true,
     useUnifiedTopology: true
   })
   .then(x => {
@@ -30,8 +32,6 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err)
   });
-
-
 
 // Middleware Setup
 app.use(logger('dev'));
@@ -58,6 +58,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/stories', storiesRouter);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

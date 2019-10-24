@@ -10,11 +10,9 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "movie-project", // The name of the folder in cloudinary
+  folder: "cubee/avatars",
   allowedFormats: ["jpg", "png"],
-  filename: function (req, file, cb) {
-    cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
-  }
+  discard_original_filename: true
 });
 
 const uploadCloud = multer({
