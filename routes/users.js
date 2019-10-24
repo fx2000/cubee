@@ -14,7 +14,7 @@ router.get('/signup', function (req, res, next) {
 
 // POST User Signup
 router.post('/signup', uploadCloud.single("avatar"), (req, res, next) => {
-  const {username, password, name, lastName, email, birthDate} = req.body;
+  const {username, password, name, lastName, email, birthday} = req.body;
   const avatar = req.file.url;
   const salt = bcrypt.genSaltSync(bcryptSalt);
   const hashPass = bcrypt.hashSync(password, salt);
@@ -28,7 +28,7 @@ router.post('/signup', uploadCloud.single("avatar"), (req, res, next) => {
         return;
       }
       // Check for empty form fields
-      if (username === '' || password === '' || email === '' || name === '' || lastName === '' || birthDate === '') {
+      if (username === '' || password === '' || email === '' || name === '' || lastName === '' || birthday === '') {
         res.render('users/signup', {error: "You must fill all required fields"})
         return;
       }
@@ -39,7 +39,7 @@ router.post('/signup', uploadCloud.single("avatar"), (req, res, next) => {
         email,
         name,
         lastName,
-        birthDate,
+        birthday,
         avatar
       })
       .then(() => {
@@ -102,12 +102,38 @@ router.use((req, res, next) => {
 
 // GET User profile
 router.get('/', function(req, res, next) {
-  res.render('users/view', { title: 'User Profile' });
+  const user = req.session.currentUser;
+  res.render('users/view', {user});
 });
 
 // GET User Update
 router.get('/update', function (req, res, next) {
-  res.render('users/update', { title: 'Update Profile' });
+  const user = req.session.currentUser;
+  res.render('users/update', {user});
+});
+
+// POST User Update
+router.post('/update', (req, res, next) => {
+  const id = req.session.currentUser._id;
+  const {username, name, lastName, email, birthday} = req.body;
+  if (req.file.url != null) {
+    const avatar = req.file.url;
+  } else{
+    const avatar = null;
+  } //TODO: FIX THIS!
+  
+
+  User.findOneAndUpdate(
+    {_id: id},
+    {$set: {username, name, lastName, email, birthday, avatar}},
+    {new: true})
+    .then(data => {
+      res.redirect('/users');
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('users/update', {user, error});
+    })
 });
 
 // GET Log out
