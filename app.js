@@ -7,24 +7,28 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const hbs = require("hbs");
+const hbsutils = require("hbs-utils")(hbs);
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
+// Routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const storiesRouter = require('./routes/stories');
-
-// Get app name
-const app_name = require('./package.json').name;
+const authRouter = require('./routes/auth');
 
 const app = express();
 
 // Open database connection
 mongoose
-  .connect(`mongodb://localhost/${app_name}`, {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useCreateIndex: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    keepAlive: true,
+    reconnectTries: Number.MAX_VALUE
   })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -42,11 +46,13 @@ app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbsutils.registerPartials(path.join(__dirname, "/views/partials"));
+hbsutils.registerWatchedPartials(path.join(__dirname, "/views/partials"));
 app.use(express.static(path.join(__dirname, 'public')));
 //app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
-  secret: "cubee-secret",
+  secret: process.env.API_SECRET,
   cookie: { maxAge: 60000 },
   resave: true,
   saveUninitialized: true,
@@ -57,6 +63,7 @@ app.use(session({
 }));
 
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/stories', storiesRouter);
 

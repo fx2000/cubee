@@ -1,12 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { isLoggedIn, notLoggedIn } = require("../middlewares/auth");
 
-// Cloudinary API
-const uploadCloud = require("../config/cloudinary.js");
-
-/* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('STORIES');
+// GET View stories
+router.get('/', notLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser;
+  res.render('stories/view', {user});
 });
 
 module.exports = router;
