@@ -5,7 +5,12 @@ azul oscuro: (70,66,139)
 amarillo: (255,255,136)
 turquesa: (2,200,167)
 */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
+/*GENERAL*/
 *,
 *::after,
 *::before{
@@ -13,7 +18,44 @@ turquesa: (2,200,167)
   padding: 0;
   background-color: rgb(70,66,139);
 }
-
+body{
+  font-family: Helvetica, sans-serif;
+  font-size: 10px;
+}
+button{
+  border: none;
+  font-family: 'Baloo Bhai';
+  font-size: 2.5rem;
+  color: #fff;
+}
+label{
+  font-family: 'Baloo Bhai';
+  font-size: 1.5rem;
+  color: #fff;
+}
+input{
+  border: none;
+  background-color: #fff;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  padding: 5px;
+}
+a{
+  font-family: 'Baloo Bhai';
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+}
+ul{
+  display: flex;
+  list-style: none;
+}
+li{
+margin-left: 15px;
+}
+.logo{
+  width: 60vw;
+}
 
 /*LANDING*/
 .landing-container{
@@ -28,3 +70,79 @@ turquesa: (2,200,167)
   height: max-content;
 }
 
+/*FORM HEADER*/
+.for-header-container{
+  display: flex;
+  flex-direction: column;
+}
+.for-header-container>div{
+  display: flex;
+  padding: 15px 15px 0;
+}
+.for-header-container:first-child{
+  justify-content: end;
+}
+.header-one{
+  justify-content: space-between;
+}
+.header-one>img{
+  height: 55px;
+  margin-left:80px;
+  margin-top: 15px;
+}
+.header-two{
+  height: 150px;
+}
+.header-two>figure>img{
+  height:75px;
+}
+.header-logo{
+  justify-self: center;
+  align-self: flex-end;
+}
+
+/*LOGIN-FORM*/
+.login-form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.inp-lab{
+display: flex;
+flex-direction: column;
+margin: 10px 40px 0;
+}
+
+.img-one{
+  align-self: flex-end;
+  transform: rotate(-90deg);
+  width: 80px;  
+}
+.login-container>div{
+  align-self: flex-end;
+}
+.login-container>div>img{
+  height: 80px;
+}
+/*btn form*/
+.btn-form-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+.img-two{
+  transform: rotate(240deg);
+  width: 75px;
+  align-self: flex-end;
+  margin-right: 20px;
+}
+.img-three{
+  transform: rotate(180deg);
+  width: 50px;
+  margin-left: 10px;
+}
+.form-btn{
+  background: url(../images/btn-rojo.svg) no-repeat center center /cover;
+  height: 130px;
+  background-size: auto;
+}

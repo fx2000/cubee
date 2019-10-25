@@ -1,11 +1,24 @@
-<h1>LOG IN</h1>
-<form action="/users/signup" method="post" enctype="multipart/form-data">
-  <label for="email">Email</label>
-  <input type="email" name="email">
-  <br />
-  <label for="password">Password</label>
-  <input type="password" name="password">
-  <br />
-  <input class="btn" type="submit" value="Log In">
-</form>
-<a href="/">Back...</a>
+
+
+<section class="login-container">
+  <form class="login-form" action="/users/signup" method="post" enctype="multipart/form-data">
+      <img class="img-one" src="/images/circ-mas-rallitas-dos.svg" alt="">
+    <div class="inp-lab">
+      <label for="email">Email</label>
+      <input type="email" name="email" placeholder="email@email.com">
+    </div>
+    <div class="inp-lab">
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="******">
+    </div>
+    <div class="btn-form-container">
+      <img class="img-three" src="/images/flecha-dos.svg" alt="">
+      <button class="form-btn" type="submit">Log In</button>
+      <img class="img-two" src="/images/flecha-uno.svg" alt="">
+    </div>
+  </form>
+
+  <div>
+    <img src="/images/ranbow.svg" alt="">
+  </div>
+</section>

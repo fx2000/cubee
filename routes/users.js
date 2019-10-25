@@ -54,7 +54,7 @@ router.post('/signup', uploadCloud.single("avatar"), (req, res, next) => {
 
 // GET User Login
 router.get('/login', function (req, res, next) {
-  res.render('users/login', { title: 'Log in' });
+  res.render('users/login', { title: 'Log in', layout:'layout' });
 });
 
 // GET User Update
