@@ -1,16 +1,21 @@
 
-
 <section class="login-container">
+  <img class="img-one" src="/images/circ-mas-rallitas-dos.svg" alt="">
   <form class="login-form" action="/users/signup" method="post" enctype="multipart/form-data">
-      <img class="img-one" src="/images/circ-mas-rallitas-dos.svg" alt="">
-    <div class="inp-lab">
-      <label for="email">Email</label>
-      <input type="email" name="email" placeholder="email@email.com">
-    </div>
-    <div class="inp-lab">
-      <label for="password">Password</label>
-      <input type="password" name="password" placeholder="******">
-    </div>
+    <div class="inp-lab-container"> 
+      <div class="inp-lab">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="email@email.com">
+      </div>
+      <div class="inp-lab">
+        <label for="password">Password</label>
+        <input type="password" name="password" placeholder="******">
+      </div>
+      <div class="inp-lab signup-text">
+        <p>Not a member? <a href="/users/signup">Sign Up</a></p>
+      </div>
+    </div> 
+    
     <div class="btn-form-container">
       <img class="img-three" src="/images/flecha-dos.svg" alt="">
       <button class="form-btn" type="submit">Log In</button>

@@ -1,30 +1,57 @@
-<h1>SIGN UP</h1>
-<form action="/users/signup" method="post" enctype="multipart/form-data" autocomplete="on">
-  <label for="name">Name</label>
-  <input type="text" name="name" autocomplete="given-name">
-  <br/>
-  <label for="lastName">Last Name</label>
-  <input type="text" name="lastName" autocomplete="family-name">
-  <br/>
-  <label for="email">Email</label>
-  <input type="email" name="email" autocomplete="email">
-  <br />
-  <label for="birthDate">Date of Birth</label>
-  <input type="date" name="birthDate" autocomplete="bday">
-  <br />
-  <label for="username">Username</label>
-  <input type="text" name="username">
-  <br />
-  <label for="password">Password</label>
-  <input type="password" name="password">
-  <br />
-  <label for="confirmPassword">Confirm Password</label>
-  <input type="password" name="confirmPassword">
-  <br />
-  <label for="avatar">Avatar</label>
-  <input type="file" name="avatar" autocomplete="photo">
-  <br />
-  <input class="btn" type="submit" value="Save">
-</form>
-<p>{{error}}</p>
-<a href="/">Back...</a>
+
+<section class="login-container">
+  <img class="img-one" src="/images/circ-mas-rallitas-dos.svg" alt=""> 
+  <form class="login-form" action="/users/signup" method="post" enctype="multipart/form-data" autocomplete="on">
+    <div class="inp-lab-container">
+      <div class="inp-lab">
+      <label for="name">Name</label>
+      <input type="text" name="name" autocomplete="given-name" placeholder="Your name">
+    </div>
+    <div class="inp-lab">
+      <label for="lastName">Last Name</label>
+      <input type="text" name="lastName" autocomplete="family-name" placeholder="Your last name">
+    </div>
+    <div class="inp-lab">
+      <label for="email">Email</label>
+      <input type="email" name="email" autocomplete="email" placeholder="email@email.com">
+    </div>
+    <div class="inp-lab">
+      <label for="birthDate">Date of Birth</label>
+      <input type="date" name="birthDate" autocomplete="bday">
+    </div>
+    <div class="inp-lab">
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="create a username">
+    </div>
+    <div class="inp-lab">
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="******">
+    </div>
+    <div class="inp-lab">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" name="confirmPassword" placeholder="******">
+    </div>
+    <div class="inp-lab">
+      
+      <input class="inputfile" id="avatar" type="file" name="avatar" autocomplete="photo">
+      <label for="avatar">Choose your Avatar</label>
+    </div>
+    <div class="inp-lab signup-text">
+      <p>Already a member? <a href="/users/login">Log In</a></p>
+    </div>
+    </div>
+    
+    <div class="btn-form-container">
+      <img class="img-three" src="/images/flecha-dos.svg" alt="">
+      <button class="form-btn" type="submit">Sign Up</button>
+      <img class="img-two" src="/images/flecha-uno.svg" alt="">
+    </div>
+  </form>
+
+  <div>
+    <img src="/images/ranbow.svg" alt="">
+  </div>
+</section>
+
+ 
+ 
