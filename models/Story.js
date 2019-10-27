@@ -1,21 +1,34 @@
-const Schema = mongoose.Schema:
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const storySchema = new Schema({
-  title: String,
-  story: String,
+  title: {
+    type: String,
+    default: 'Untitled'
+  },
+  story: {
+    type: String,
+    required: true
+  },
   author: {
     type: ObjectId,
     ref: "User"
   },
-  date: {
-    type: Date,
-    default: new Date()
+  restricted: {
+    type: Boolean,
+    default: false
   },
-  restricted: bool,
-  private: bool,
+  private: {
+    type: Boolean,
+    default: false
+  },
   votes: [],
-  comments: []
-})
+  comments: [],
+  narration: String
+}, {
+  timestamps: true
+});
 
 const Story = mongoose.model('Story', storySchema);
 module.exports = Story;
