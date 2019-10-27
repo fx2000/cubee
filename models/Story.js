@@ -7,13 +7,13 @@ const storySchema = new Schema({
     type: String,
     default: 'Untitled'
   },
-  story: {
+  content: {
     type: String,
     required: true
   },
   author: {
     type: ObjectId,
-    ref: "User"
+    ref: 'User'
   },
   restricted: {
     type: Boolean,
