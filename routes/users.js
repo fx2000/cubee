@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Story = require('../models/Story');
 const formatDate = require('../helpers/formatDate');
 
 // Cloudinary API
@@ -83,19 +84,15 @@ router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {
 });
 
 // GET User profile
-router.get('/:id', notLoggedIn, (req, res, next) => {
+router.get('/:id', notLoggedIn, async (req, res, next) => {
   const { id } = req.params;
-  const currentUser = req.session.currentUser;
   const birthday = formatDate(req.session.currentUser.birthday);
-  const created = formatDate(req.session.currentUser.createdAt)
-  User.findOne({ _id: id })
-    .then(user => {
-      res.render('users/view', { user, currentUser, birthday, created });
-    })
-    .catch(error => {
-      console.log(error);
-      res.render('users/view', {error});
-    })
+  const created = formatDate(req.session.currentUser.createdAt);
+
+  const user = await User.findOne({ _id: id });
+  console.log(user);
+  const stories = await Story.find({ author: id });
+  res.render('users/view', { user, stories, birthday, created });
 });
 
 module.exports = router;

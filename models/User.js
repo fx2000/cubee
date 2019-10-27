@@ -32,7 +32,8 @@ const userSchema = new Schema({
   avatar: {
     type: String,
     default: 'https://res.cloudinary.com/fx2000/image/upload/v1571924502/cubee/img/default-avatar_s8v2ls.png'
-  }
+  },
+  aboutMe: String
 }, {
   timestamps: true
 });

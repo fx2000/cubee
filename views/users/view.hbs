@@ -7,8 +7,16 @@
 <br/>
 <ul>
   <li>Name: {{user.name}} {{user.lastName}}</li>
+  <li>Username: {{user.username}}</li>
+  <li>About me: {{user.aboutMe}}</li>
   <li>Email: {{user.email}}</li>
   <li>Date of Birth: {{birthday}}</li>
   <li>Member since: {{created}}</li>
 </ul>
 <br/>
+<h2>{{user.username}}'s Stories</h2>
+
+<!-- TODO: Fix putting author details into this partial -->
+{{#each stories}}
+  {{>story}}
+{{/each}}
