@@ -25,7 +25,7 @@ const userSchema = new Schema({
     required: true,
     unique: true
   },
-  birthDate: {
+  birthday: {
     type: Date,
     required: true
   },
@@ -34,10 +34,7 @@ const userSchema = new Schema({
     default: 'https://res.cloudinary.com/fx2000/image/upload/v1571924502/cubee/img/default-avatar_s8v2ls.png'
   }
 }, {
-  timestamps: {
-    createdAt: "createdAt",
-    updatedAt: "updatedAt"
-  }
+  timestamps: true
 });
 
 const User = mongoose.model('User', userSchema);

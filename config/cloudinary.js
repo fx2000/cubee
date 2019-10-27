@@ -1,6 +1,6 @@
-const cloudinary = require("cloudinary");
-const cloudinaryStorage = require("multer-storage-cloudinary");
-const multer = require("multer");
+const cloudinary = require('cloudinary');
+const cloudinaryStorage = require('multer-storage-cloudinary');
+const multer = require('multer');
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -10,8 +10,8 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "cubee/avatars",
-  allowedFormats: ["jpg", "png"],
+  folder: 'cubee/avatars',
+  allowedFormats: ['jpg', 'png'],
   discard_original_filename: true
 });
 

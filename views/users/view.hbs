@@ -1,1 +1,14 @@
-<h1>USER VIEW</h1>
+<h1>USER PROFILE</h1>
+<a href="/stories">Back...</a>
+<br/>
+<a href="/users/update">Update my profile</a>
+<br/>
+<img src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}" height="300" width="300">
+<br/>
+<ul>
+  <li>Name: {{user.name}} {{user.lastName}}</li>
+  <li>Email: {{user.email}}</li>
+  <li>Date of Birth: {{user.birthday}}</li>
+  <li>Member since: {{user.createdAt}}</li>
+</ul>
+<br/>
