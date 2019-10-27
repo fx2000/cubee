@@ -1,0 +1,10 @@
+<h1>CHANGE AVATAR</h1>
+<form action="/users/change-avatar" method="POST" enctype="multipart/form-data">
+  <img src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}" height="300" width="300">
+  <br />
+  <input class="inputfile" id="avatar" type="file" name="avatar" autocomplete="photo">
+  <label for="avatar">Choose your Avatar</label>
+  <input type="submit" value="Update">
+</form>
+<p>{{error}}</p>
+<a href="/">Back...</a>

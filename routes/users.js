@@ -3,6 +3,9 @@ const router = express.Router();
 const User = require('../models/User');
 const formatDate = require('../helpers/formatDate');
 
+// Cloudinary API
+const uploadCloud = require('../config/cloudinary.js');
+
 const { parser } = require("../config/cloudinary.js");
 const { isLoggedIn, notLoggedIn } = require("../middlewares/auth");
 
@@ -34,23 +37,32 @@ router.post('/update', notLoggedIn, (req, res, next) => {
     })
 });
 
-// GET User profile
-router.get('/:id', notLoggedIn, (req, res, next) => {
-  const { id } = req.params;
-  const currentUser = req.session.currentUser;
-  const birthday = formatDate(req.session.currentUser.birthday);
-  const created = formatDate(req.session.currentUser.createdAt)
-  User.findOne({ _id: id })
-    .then(user => {
-      res.render('users/view', { user, currentUser, birthday, created });
+// GET Change avatar
+router.get('/change-avatar', notLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser;
+  res.render('users/change-avatar', { user });
+});
+
+// POST Change avatar
+router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), (req, res, next) => {
+  const id = req.session.currentUser._id;
+  const avatar = req.file.url;
+
+  console.log(id)
+  console.log(avatar)
+  User.findByIdAndUpdate(id, {
+    avatar: avatar
+  })
+    .then(data => {
+      res.redirect('/users/' + id);
     })
     .catch(error => {
       console.log(error);
-      res.render('users/view', {error});
+      res.render('/update', { user, error: 'Update failed' });
     })
-});
+})
 
-// GET delete avatar
+// GET Delete avatar
 router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const user = req.session.currentUser;
@@ -67,6 +79,23 @@ router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {
         res.render('/update', { user, error });
       })
   }
+  res.render('/update', { user, error: 'Unauthorized' });
+});
+
+// GET User profile
+router.get('/:id', notLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+  const currentUser = req.session.currentUser;
+  const birthday = formatDate(req.session.currentUser.birthday);
+  const created = formatDate(req.session.currentUser.createdAt)
+  User.findOne({ _id: id })
+    .then(user => {
+      res.render('users/view', { user, currentUser, birthday, created });
+    })
+    .catch(error => {
+      console.log(error);
+      res.render('users/view', {error});
+    })
 });
 
 module.exports = router;
