@@ -60,7 +60,7 @@ router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), (req, r
       console.log(error);
       res.render('/update', { user, error: 'Update failed' });
     })
-})
+});
 
 // GET Delete avatar
 router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {

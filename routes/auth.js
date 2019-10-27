@@ -104,6 +104,42 @@ router.post('/login', (req, res, next) => {
     .catch((error) => { console.log(error) });
 });
 
+// GET Change password
+router.get('/change-password', notLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser;
+  res.render('change-password', { user });
+});
+
+// POST Change password
+router.post('/change-password', notLoggedIn, (req, res, next) => {
+  const user = req.session.currentUser;
+  const { password, newPassword } = req.body;
+
+  const salt = bcrypt.genSaltSync(bcryptSalt);
+  const hashPass = bcrypt.hashSync(newPassword, salt);
+
+  // Check for correct password
+  if (bcrypt.compareSync(password, user.password)) {
+    User.findByIdAndUpdate(user._id, {
+      password: hashPass
+    })
+      .then(data => {
+        res.redirect('/users/' + user._id);
+      })
+      .catch(error => {
+        console.log(error);
+        res.render('/change-password', {
+          error: 'Update failed'
+        });
+      })
+  } else {
+    // Otherwise, send back error message
+    res.render('/change-password', {
+      error: 'Update failed'
+    });
+  }
+})
+
 // GET Log out
 router.get('/logout', notLoggedIn, (req, res, next) => {
   req.session.destroy((error) => {
