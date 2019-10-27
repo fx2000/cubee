@@ -11,35 +11,37 @@ const { isLoggedIn, notLoggedIn } = require("../middlewares/auth");
 router.get('/update', notLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
   const birthday = formatDate(req.session.currentUser.birthday);
-  res.render('users/update', {user, birthday});
+  res.render('users/update', { user, birthday });
 });
 
 // POST User Update
 router.post('/update', notLoggedIn, (req, res, next) => {
-  const id = req.session.currentUser._id;
-  const {username, name, lastName, email, birthday} = req.body;
+  const user = req.session.currentUser;
+  const { id } = req.session.currentUser;
+  const { username, name, lastName, email, birthday } = req.body;
   User.findByIdAndUpdate(id, {
-      username: username,
-      name: name,
-      lastName: lastName,
-      email: email,
-      birthday: birthday
-    })
+    username: username,
+    name: name,
+    lastName: lastName,
+    email: email,
+    birthday: birthday
+  })
     .then(data => {
-      res.redirect('/users/'+id);
+      res.redirect('/users/' + id);
     })
     .catch(error => {
       console.log(error);
-      res.render('users/update', {user, error});
+      res.render('users/update', { user, error });
     })
 });
 
 // GET User profile
 router.get('/:id', notLoggedIn, (req, res, next) => {
-  const {id} = req.params;
-  User.findOne({_id: id})
+  const { id } = req.params;
+  const currentUser = req.session.currentUser;
+  User.findOne({ _id: id })
     .then(user => {
-      res.render("users/view", {user});
+      res.render('users/view', { user, currentUser });
     })
     .catch(error => {
       console.log(error);

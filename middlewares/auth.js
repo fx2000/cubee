@@ -14,4 +14,4 @@ const notLoggedIn = (req, res, next) => {
   next();
 }
 
-module.exports = {isLoggedIn, notLoggedIn};
+module.exports = { isLoggedIn, notLoggedIn };

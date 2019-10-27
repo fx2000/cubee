@@ -7,10 +7,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const hbs = require("hbs");
-const hbsutils = require("hbs-utils")(hbs);
-const session = require("express-session");
-const MongoStore = require("connect-mongo")(session);
+const hbs = require('hbs');
+const hbsutils = require('hbs-utils')(hbs);
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 // Routes
 const indexRouter = require('./routes/index');
@@ -31,7 +31,7 @@ mongoose
     reconnectTries: Number.MAX_VALUE
   })
   .then(x => {
-    console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
+    console.log(`Connected to Mongo! Database name: '${x.connections[0].name}"`)
   })
   .catch(err => {
     console.error('Error connecting to mongo', err)
@@ -46,10 +46,10 @@ app.use(cookieParser());
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbsutils.registerPartials(path.join(__dirname, "/views/partials"));
-hbsutils.registerWatchedPartials(path.join(__dirname, "/views/partials"));
+hbsutils.registerPartials(path.join(__dirname, '/views/partials'));
+hbsutils.registerWatchedPartials(path.join(__dirname, '/views/partials'));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
   secret: process.env.API_SECRET,
@@ -68,12 +68,12 @@ app.use('/users', usersRouter);
 app.use('/stories', storiesRouter);
 
 // Catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use((req, res, next) => {
   next(createError(404));
 });
 
 // Error handler
-app.use(function(err, req, res, next) {
+app.use((err, req, res, next) => {
   // Set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
