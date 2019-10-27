@@ -32,7 +32,6 @@ router.post('/update', notLoggedIn, (req, res, next) => {
       console.log(error);
       res.render('users/update', { user, error });
     })
-    .catch((error) => {console.log(error)})
 });
 
 // GET User profile
@@ -49,6 +48,25 @@ router.get('/:id', notLoggedIn, (req, res, next) => {
       console.log(error);
       res.render('users/view', {error});
     })
+});
+
+// GET delete avatar
+router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {
+  const { id } = req.params;
+  const user = req.session.currentUser;
+
+  if (id === user._id) {
+    User.findByIdAndUpdate(id, {
+      avatar: 'https://res.cloudinary.com/fx2000/image/upload/v1571924502/cubee/img/default-avatar_s8v2ls.png'
+    })
+      .then(data => {
+        res.redirect('/users/' + id);
+      })
+      .catch(error => {
+        console.log(error);
+        res.render('/update', { user, error });
+      })
+  }
 });
 
 module.exports = router;
