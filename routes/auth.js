@@ -17,8 +17,10 @@ const { isLoggedIn, notLoggedIn } = require('../middlewares/auth');
 const uploadCloud = require('../config/cloudinary.js');
 
 // GET User Signup
-router.get('/signup', isLoggedIn, (req, res, next) => {
-  res.render('signup');
+router.get('/signup', function (req, res, next) {
+  res.render('signup', {
+    layout: 'layout'
+  })
 });
 
 // POST User Signup
@@ -64,8 +66,10 @@ router.post('/signup', uploadCloud.single('avatar'), (req, res, next) => {
 });
 
 // GET User Login
-router.get('/login', isLoggedIn, (req, res, next) => {
-  res.render('login');
+router.get('/login', function (req, res, next) {
+  res.render('login', {
+    layout: 'layout'
+  });
 });
 
 // POST User Login

@@ -6,12 +6,6 @@ const formatDate = require('../helpers/formatDate');
 const { parser } = require("../config/cloudinary.js");
 const { isLoggedIn, notLoggedIn } = require("../middlewares/auth");
 
-
-// GET User Signup
-router.get('/signup', function (req, res, next) {
-  res.render('users/signup', { layout:'layout' })});
-
-
 // GET User Update
 router.get('/update', notLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
@@ -41,18 +35,15 @@ router.post('/update', notLoggedIn, (req, res, next) => {
     .catch((error) => {console.log(error)})
 });
 
-// GET User Login
-router.get('/login', function (req, res, next) {
-  res.render('users/login', { layout:'layout' });
-});
-
 // GET User profile
 router.get('/:id', notLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const currentUser = req.session.currentUser;
+  const birthday = formatDate(req.session.currentUser.birthday);
+  const created = formatDate(req.session.currentUser.createdAt)
   User.findOne({ _id: id })
     .then(user => {
-      res.render('users/view', { user, currentUser });
+      res.render('users/view', { user, currentUser, birthday, created });
     })
     .catch(error => {
       console.log(error);
