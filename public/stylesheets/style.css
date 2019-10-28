@@ -11,6 +11,7 @@ turquesa: (2,200,167)
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 }
 .landing-img{
   height: 100vh;
@@ -243,6 +244,14 @@ width: 100%;
   height: 130px;
   background-size: auto;
 }
+/*CREATE STORY*/
+.check-container{
+  display: flex;
+}
+input[type="checkbox"]{
+  color: #fff;
+  font-size: 1.2rem;
+}
 
 /*CHANGE AVATAR*/
 .change-avatar{
@@ -251,3 +260,5 @@ width: 100%;
 .inp-lab-change{
   margin: 15px 0;
 }
+/*CREATE STORIE*/
+/*RADIO BUTTONS*/

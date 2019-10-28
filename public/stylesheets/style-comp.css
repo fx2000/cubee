@@ -16,6 +16,7 @@ turquesa: (2,200,167)
 body{
   font-family: Helvetica, sans-serif;
   font-size: 10px;
+  background-color: rgb(70,66,139);
 }
 button{
   border: none;
