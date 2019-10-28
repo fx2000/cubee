@@ -1,8 +1,9 @@
 {{>navbar}}
 <section class="login-container">
-  <h1>UPDATE PROFILE</h1>
-  <img class="img-one" src="/images/circ-mas-rallitas-dos.svg" alt=""> 
-  <form class="login-form" action="/users/update" method="POST">
+  
+  <img class="update-img-one img-one" src="/images/circ-mas-rallitas-dos.svg" alt=""> 
+  <form class="update-form login-form" action="/users/update" method="POST">
+  <h2>UPDATE PROFILE</h2>
   <div class="inp-lab-container">
       <div class="inp-lab">
         <label for="name">Name</label>
@@ -27,18 +28,19 @@
       <div class="ch-avatar-cont">
         <img src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}">
         <div>
-          <a class="update-a" href="/users/delete-avatar/{{user._id}}">Delete Avatar</a>
-        <a class="update-a" href="/users/change-avatar/">Change Avatar</a> <!-- TODO: Create this route -->
+          
+          <a class="update-a" href="/users/change-avatar/">Change Avatar</a> <!-- TODO: Create this route -->
         </div>
-        <a class="update-a" href="/auth/change-password">Change my password</a><!-- TODO: Create this route -->
+        <a class="update-a" href="/auth/change-password">Change password</a><!-- TODO: Create this route -->
       </div>
       
     </div>
     <div class="btn-form-container">
       <img class="img-three" src="/images/flecha-dos.svg" alt="">
-      <button class="form-btn" type="submit">Update</button>
+      <button class="update-btn" type="submit">Update</button>
       <img class="img-two" src="/images/flecha-uno.svg" alt="">
     </div>
+    
   </form>
   <p>{{error}}</p>
 </section>

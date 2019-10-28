@@ -40,7 +40,10 @@ input, textarea{
 input:active, input:focus {
   border: 3px solid rgb(255,255,136);
 }
-
+h2{
+  font-family: 'Baloo Bhai';
+  color: rgb(2,200,167);
+}
 a{
   font-family: 'Baloo Bhai';
   color: #fff;
