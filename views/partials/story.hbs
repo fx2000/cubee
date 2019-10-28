@@ -1,12 +1,68 @@
-<form action="/stories/vote/{{_id}}" method="POST">
-  <input type="radio" name="vote" id="vote" value="up">Upvote
-  <input type="radio" name="vote" value="down">Downvote<br />
-  <input type="submit" value="Vote">
-</form>
+<main class="card-container">
+  <header class="bg-white">
+    <div class="bg-white">
+      <h2 class="bg-white">{{title}}</h2>
+    </div>
+    <div class="dice-container bg-white">
+        <div class="bg-white">
+          <div class="dice"></div>
+          <div class="dice"></div>
+          <div class="dice"></div>
+        </div>
+        <div class="bg-white">
+          <div class="dice"></div>
+          <div class="dice"></div>
+          <div class="dice"></div>
+        </div>
+        <div class="bg-white">
+          <div class="dice"></div>
+          <div class="dice"></div>
+          <div class="dice"></div>
+        </div>
+    </div>
+  </header>
+  <section class="story-container bg-white">
+    <article class="bg-white">
+      <p class="bg-white">{{content}}</p>
+    </article>
+    <div class="author-container bg-white">
+      <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}"></a>
+      <p class="bg-white">Author: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
+    </div>  
+  </section>
+  <section class="interaction-container bg-white">
+    <div class="bg-white">
+      <a class="bg-white" href="/">Details & comments</a>
+    </div>
+    <div class="normal-container">
+	<div class="smile-rating-container">
+      <div class="smile-rating-toggle-container">
+        <form class="submit-rating" action="/stories/vote/{{_id}}" method="POST">
+          <input id="meh"  name="vote" type="radio" value="up" /> 
+          <input id="fun" name="vote" type="radio" value="down"/> 
+          <label for="meh" class="rating-label rating-label-meh">Bad</label>
+          <div class="smile-rating-toggle"></div>
+          
+          <div class="rating-eye rating-eye-left"></div>
+          <div class="rating-eye rating-eye-right"></div>
+          
+          <div class="mouth rating-eye-bad-mouth"></div>
+          
+          <div class="toggle-rating-pill"></div>
+          <label for="fun" class="rating-label rating-label-fun">Fun</label>
+          <input type="submit" value="Vote">
+        </form>
+      </div>
+    </div>
+  </div>
+    
+  </section>
+</main>
 
-<h2>Title: {{title}}</h2>
-<p>Story: {{content}}</p>
-<p>Author: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
-<a href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}" width="100" height="100"></a>
+
+
+
+
+
 <p>Time & Date: {{createdAt}}</p>
 <br/>
