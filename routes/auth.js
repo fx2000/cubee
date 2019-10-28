@@ -16,7 +16,7 @@ const uploadCloud = require('../config/cloudinary.js');
 
 // GET User Signup
 router.get('/signup', function (req, res, next) {
-  res.render('signup')
+  res.render('signup');
 });
 
 // POST User Signup
@@ -56,7 +56,7 @@ router.post('/signup', uploadCloud.single('avatar'), async (req, res, next) => {
     }
     const newUser = await User.create(newUserDetails);
     req.session.currentUser = newUser;
-    res.redirect('/');
+    res.redirect('/stories');
   } catch (error) {
     next(error);
   }
@@ -101,39 +101,7 @@ router.get('/change-password', notLoggedIn, (req, res, next) => {
   res.render('change-password', { user });
 });
 
-/*
-// POST Change password TODO: Switch to async/await
-router.post('/change-password', notLoggedIn, (req, res, next) => {
-  const user = req.session.currentUser;
-  const { password, newPassword } = req.body;
-
-  const salt = bcrypt.genSaltSync(bcryptSalt);
-  const hashPass = bcrypt.hashSync(newPassword, salt);
-
-  // Check for correct password
-  if (bcrypt.compareSync(password, user.password)) {
-    User.findByIdAndUpdate(user._id, {
-      password: hashPass
-    })
-      .then(data => {
-        res.redirect('/users/' + user._id);
-      })
-      .catch(error => {
-        console.log(error);
-        res.render('/change-password', {
-          error: 'Update failed'
-        });
-      })
-  } else {
-    // Otherwise, send back error message
-    res.render('/change-password', {
-      error: 'Update failed'
-    });
-  }
-});
-*/
-
-// POST Change password TODO: Fix this properly
+// POST Change password
 router.post('/change-password', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const { password, newPassword, confirmPassword } = req.body;

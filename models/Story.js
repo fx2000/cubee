@@ -25,6 +25,10 @@ const storySchema = new Schema({
   },
   votes: [],
   comments: [],
+  score: {
+    type: Number,
+    default: 1
+  },
   narration: String
 }, {
   timestamps: true

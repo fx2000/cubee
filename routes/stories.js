@@ -51,8 +51,9 @@ router.post('/vote/:id', notLoggedIn, async (req, res, next) => {
   const { id } = req.params;
   const { vote } = req.body;
   const user = req.session.currentUser;
-
+  const score = (vote === 'up') ? 1 : -1;
   const story = await Story.findOne({ _id: id });
+
   if (vote === 'up') {
     story.votes.push({ user: user._id, vote: 1 });
     story.save();
@@ -60,6 +61,11 @@ router.post('/vote/:id', notLoggedIn, async (req, res, next) => {
     story.votes.push({ user: user._id, vote: -1 });
     story.save();
   }
+
+  await Story.findByIdAndUpdate(id, {
+    $inc: { score: score }
+  });
+
   res.redirect('/stories');
 });
 
