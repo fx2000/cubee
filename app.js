@@ -11,6 +11,7 @@ const hbs = require('hbs');
 const hbsutils = require('hbs-utils')(hbs);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+const flash = require("connect-flash");
 
 // Routes
 const indexRouter = require('./routes/index');
@@ -31,10 +32,10 @@ mongoose
     reconnectTries: Number.MAX_VALUE
   })
   .then(x => {
-    console.log(`Connected to Mongo! Database name: '${x.connections[0].name}"`)
+    console.log(`Connected to Mongo! Database name: '${x.connections[0].name}"`);
   })
   .catch(err => {
-    console.error('Error connecting to mongo', err)
+    console.error('Error connecting to mongo', err);
   });
 
 // Middleware Setup
@@ -42,6 +43,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Load flash for error managing
+app.use(flash());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -53,7 +57,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
   secret: process.env.API_SECRET,
-  cookie: { maxAge: 60000 },
+  cookie: { maxAge: 86400000 },
   resave: true,
   saveUninitialized: true,
   store: new MongoStore({

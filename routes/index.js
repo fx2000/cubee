@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('landing', {layout: false});
-
+// GET home page
+router.get('/', (req, res, next) => {
+  res.render('landing');
 });
 
-router.get('/welcome', function(req, res, next) {
-  res.render('index', {layout: 'layout'});
+// GET Welcome page
+router.get('/welcome', (req, res, next) => {
+  res.render('index');
 });
+
 module.exports = router;
-//coment

@@ -6,8 +6,9 @@ const formatDate = require('../helpers/formatDate');
 
 // Cloudinary API
 const uploadCloud = require('../config/cloudinary.js');
-
 const { parser } = require("../config/cloudinary.js");
+
+// Load middlewares
 const { isLoggedIn, notLoggedIn } = require("../middlewares/auth");
 
 // GET User Update
@@ -17,7 +18,7 @@ router.get('/update', notLoggedIn, (req, res, next) => {
   res.render('users/update', { user, birthday });
 });
 
-// POST User Update
+// POST User Update TODO: Switch to async/await
 router.post('/update', notLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
   const { id } = req.session.currentUser;
@@ -44,7 +45,7 @@ router.get('/change-avatar', notLoggedIn, (req, res, next) => {
   res.render('users/change-avatar', { user });
 });
 
-// POST Change avatar
+// POST Change avatar TODO: Switch to async/await
 router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), (req, res, next) => {
   const id = req.session.currentUser._id;
   const avatar = req.file.url;
@@ -63,7 +64,7 @@ router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), (req, r
     })
 });
 
-// GET Delete avatar
+// GET Delete avatar TODO: Switch to async/await
 router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {
   const { id } = req.params;
   const user = req.session.currentUser;
