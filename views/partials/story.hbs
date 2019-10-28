@@ -1,5 +1,9 @@
-<p>Dice go here</p>
-<a href="/stories/upvote/{{_id}}">upvote</a> | <a href="/stories/downvote/{{_id}}">downvote</a>
+<form action="/stories/vote/{{_id}}" method="POST">
+  <input type="radio" name="vote" id="vote" value="up">Upvote
+  <input type="radio" name="vote" value="down">Downvote<br />
+  <input type="submit" value="Vote">
+</form>
+
 <h2>Title: {{title}}</h2>
 <p>Story: {{content}}</p>
 <p>Author: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>

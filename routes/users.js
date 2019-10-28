@@ -6,7 +6,7 @@ const formatDate = require('../helpers/formatDate');
 
 // Cloudinary API
 const uploadCloud = require('../config/cloudinary.js');
-const { parser } = require('../config/cloudinary.js'); // TODO: Check if this is really necessary
+// const { parser } = require('../config/cloudinary.js'); // TODO: Check if this is really necessary
 
 // Load middlewares
 const { notLoggedIn } = require('../middlewares/auth');

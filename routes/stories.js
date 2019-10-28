@@ -46,25 +46,20 @@ router.post('/create', notLoggedIn, async (req, res, next) => {
   res.redirect('/stories');
 });
 
-// GET Upvote story
-router.get('/upvote/:id', notLoggedIn, async (req, res, next) => {
+// POST voting system
+router.post('/vote/:id', notLoggedIn, async (req, res, next) => {
   const { id } = req.params;
+  const { vote } = req.body;
   const user = req.session.currentUser;
 
   const story = await Story.findOne({ _id: id });
-  story.votes.push({ user: user._id, vote: 1 });
-  story.save();
-  res.redirect('/stories');
-});
-
-// GET Downvote story
-router.get('/downvote/:id', notLoggedIn, async (req, res, next) => {
-  const { id } = req.params;
-  const user = req.session.currentUser;
-
-  const story = await Story.findOne({ _id: id });
-  story.votes.push({ user: user._id, vote: -1 });
-  story.save();
+  if (vote === 'up') {
+    story.votes.push({ user: user._id, vote: 1 });
+    story.save();
+  } else if (vote === 'down') {
+    story.votes.push({ user: user._id, vote: -1 });
+    story.save();
+  }
   res.redirect('/stories');
 });
 
