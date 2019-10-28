@@ -6,10 +6,10 @@ const formatDate = require('../helpers/formatDate');
 
 // Cloudinary API
 const uploadCloud = require('../config/cloudinary.js');
-const { parser } = require("../config/cloudinary.js");
+const { parser } = require('../config/cloudinary.js'); // TODO: Check if this is really necessary
 
 // Load middlewares
-const { isLoggedIn, notLoggedIn } = require("../middlewares/auth");
+const { notLoggedIn } = require('../middlewares/auth');
 
 // GET User Update
 router.get('/update', notLoggedIn, (req, res, next) => {
@@ -18,25 +18,27 @@ router.get('/update', notLoggedIn, (req, res, next) => {
   res.render('users/update', { user, birthday });
 });
 
-// POST User Update TODO: Switch to async/await
-router.post('/update', notLoggedIn, (req, res, next) => {
-  const user = req.session.currentUser;
-  const { id } = req.session.currentUser;
+// POST User update
+router.post('/update', notLoggedIn, async (req, res, next) => {
+  let user = req.session.currentUser._id;
   const { username, name, lastName, email, birthday } = req.body;
-  User.findByIdAndUpdate(id, {
+
+  const checkUser = await User.findOne({ $or: [{ email: email }, { username: username }] });
+  // Check if the username or email address is already in use
+  if (checkUser !== null) {
+    res.render('users/update', { user, error: 'That username/email is already in use' });
+  }
+
+  await User.findByIdAndUpdate(user._id, {
     username: username,
     name: name,
     lastName: lastName,
     email: email,
     birthday: birthday
-  })
-    .then(data => {
-      res.redirect('/users/' + id);
-    })
-    .catch(error => {
-      console.log(error);
-      res.render('users/update', { user, error });
-    })
+  });
+  user = await User.findById(user._id);
+  req.session.currentUser = user;
+  res.redirect('/users/' + user._id);
 });
 
 // GET Change avatar
@@ -45,43 +47,30 @@ router.get('/change-avatar', notLoggedIn, (req, res, next) => {
   res.render('users/change-avatar', { user });
 });
 
-// POST Change avatar TODO: Switch to async/await
-router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), (req, res, next) => {
+// POST Change avatar
+router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), async (req, res, next) => {
   const id = req.session.currentUser._id;
   const avatar = req.file.url;
-
-  console.log(id)
-  console.log(avatar)
-  User.findByIdAndUpdate(id, {
+  await User.findByIdAndUpdate(id, {
     avatar: avatar
-  })
-    .then(data => {
-      res.redirect('/users/' + id);
-    })
-    .catch(error => {
-      console.log(error);
-      res.render('/update', { user, error: 'Update failed' });
-    })
+  });
+  const user = await User.findById(id);
+  req.session.user = user;
+  res.redirect('/users/' + id);
 });
 
-// GET Delete avatar TODO: Switch to async/await
-router.get('/delete-avatar/:id', notLoggedIn, (req, res, next) => {
+// GET Delete avatar
+router.get('/delete-avatar/:id', notLoggedIn, async (req, res, next) => {
   const { id } = req.params;
   const user = req.session.currentUser;
 
   if (id === user._id) {
-    User.findByIdAndUpdate(id, {
+    await User.findByIdAndUpdate(id, {
       avatar: 'https://res.cloudinary.com/fx2000/image/upload/v1571924502/cubee/img/default-avatar_s8v2ls.png'
-    })
-      .then(data => {
-        res.redirect('/users/' + id);
-      })
-      .catch(error => {
-        console.log(error);
-        res.render('/update', { user, error });
-      })
+    });
+    res.redirect('/users/' + id);
   }
-  res.render('/update', { user, error: 'Unauthorized' });
+  res.render('users/update', { user, error: 'Unauthorized' });
 });
 
 // GET User profile
