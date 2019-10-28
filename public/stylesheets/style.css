@@ -43,16 +43,12 @@ input:active, input:focus {
 
 a{
   font-family: 'Baloo Bhai';
-  font-size: 1.5rem;
   color: #fff;
   text-decoration: none;
 }
 ul{
   display: flex;
   list-style: none;
-}
-li{
-margin-left: 15px;
 }
 .logo{
   width: 60vw;
@@ -69,6 +65,27 @@ margin-left: 15px;
 }
 .landing{
   height: max-content;
+}
+/*WELCOME*/
+.welcom-container{
+  margin-top:50px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+}
+.welcom-container>li>a{
+  font-size: 3rem;
+}
+.welcome-container-two{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.welcome-container-two>div>img{
+  margin-top: 200x;
+  padding-top: 52%;
 }
 
 /*FORM HEADER*/
@@ -114,6 +131,7 @@ margin-left: 15px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: auto 25px;
 }
 .inp-lab-container{
   width: 100%;
