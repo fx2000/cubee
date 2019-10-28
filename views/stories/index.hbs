@@ -7,6 +7,11 @@
 <br/>
 <a href="/stories/create">Create Story</a>
 <br/>
+<form action="/stories/search" method="POST">
+  <input type="text" name="terms">
+  <input type="submit" value="Search">
+</form>
+<p>{{error}}</p>
 <h1>STORIES</h1>
 {{#each stories}}
 {{>story}}

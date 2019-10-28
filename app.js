@@ -11,7 +11,7 @@ const hbs = require('hbs');
 const hbsutils = require('hbs-utils')(hbs);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const flash = require("connect-flash");
+const flash = require('connect-flash');
 
 // Routes
 const indexRouter = require('./routes/index');

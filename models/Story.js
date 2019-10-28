@@ -29,9 +29,16 @@ const storySchema = new Schema({
     type: Number,
     default: 1
   },
-  narration: String
+  narration: String,
+  tags: []
 }, {
   timestamps: true
+});
+
+storySchema.index({
+  title: 'text',
+  content: 'text',
+  tags: 'text'
 });
 
 const Story = mongoose.model('Story', storySchema);
