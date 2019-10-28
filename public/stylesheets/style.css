@@ -5,60 +5,13 @@ azul oscuro: (70,66,139)
 amarillo: (255,255,136)
 turquesa: (2,200,167)
 */
-/*GENERAL*/
-*,
-*::after,
-*::before{
-  margin: 0;
-  padding: 0;
-  background-color: rgb(70,66,139);
-  box-sizing: border-box;
-}
-body{
-  font-family: Helvetica, sans-serif;
-  font-size: 10px;
-}
-button{
-  border: none;
-  font-family: 'Baloo Bhai';
-  font-size: 2.5rem;
-  color: #fff;
-}
-label{
-  font-family: 'Baloo Bhai';
-  font-size: 1.5rem;
-  color: #fff;
-}
-input{
-  border: none;
-  background-color: #fff;
-  border-radius: 5px;
-  font-size: 1.1rem;
-  padding: 5px;
-  color: rgba(51, 51, 51, 0.6)
-}
-input:active, input:focus {
-  border: 3px solid rgb(255,255,136);
-}
-
-a{
-  font-family: 'Baloo Bhai';
-  color: #fff;
-  text-decoration: none;
-}
-ul{
-  display: flex;
-  list-style: none;
-}
-.logo{
-  width: 60vw;
-}
 
 /*LANDING*/
 .landing-container{
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 }
 .landing-img{
   height: 100vh;
@@ -86,40 +39,6 @@ ul{
 .welcome-container-two>div>img{
   margin-top: 200x;
   padding-top: 52%;
-}
-
-/*FORM HEADER*/
-.for-header-container{
-  display: flex;
-  flex-direction: column;
-}
-.for-header-container>div{
-  display: flex;
-  padding: 15px 15px 0;
-}
-.for-header-container:first-child{
-  justify-content: end;
-}
-.header-one{
-  justify-content: flex-start;
-}
-.header-one>img{
-  height: 55px;
-  margin-left:80px;
-}
-.header-two{
-  height: 150px;
-  flex-direction: column;
-  align-items: center;
-}
-.header-two>figure>img{
-  height:75px;
-}
-.header-two-img{
-  align-self: flex-start;
-}
-.header-log{
-  align-self: center;
 }
 
 /*LOGIN-FORM*/
@@ -190,7 +109,7 @@ width: 100%;
   background-size: auto;
 }
 
-/*SIGN UP*/
+/*SIGN UP AND LOGIN*/
 
 .inputfile {
 	width: 0.1px;
@@ -207,3 +126,139 @@ width: 100%;
 .inputfile + label {
 	cursor: pointer; /* "hand" cursor */
 }
+
+/*PROFILE VIEW*/
+.users-view{
+  color: #fff;
+  font-size: 1.2rem;
+}
+.profile-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.img-1{
+  align-self: flex-start;
+ 
+}
+.img-1>img{
+  height: 100px;
+}
+.img-2{
+  align-self: flex-end;
+  margin-right: 25px;
+  margin-top: -60px;
+}
+.img-2>img{
+  height:65px;  
+}
+.profile-header>div>p{
+  font-family: 'Baloo Bhai';
+  font-size: 3rem;
+  text-align: center;
+  justify-self: center;
+  color: rgb(2,200,167);
+}
+.prof_avatar{
+  border-radius: 50%;
+  border: 3px solid rgb(2,200,167);
+  height: 300px;
+  margin-top: -35px;
+}
+/*PROFILE INFO*/
+.profile-info{
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+.profile-info>ul{
+  display: flex;
+  flex-direction: column;
+  margin-top: -75px;
+}
+.profile-info>ul>li{
+  margin: 10px 0;
+}
+.profile-info>ul>li>span{
+  font-family: 'Baloo Bhai';
+  color: rgb(2,200,167);
+}
+.img-3{
+  align-self: flex-end;
+  margin-right: 35px;
+  margin-top: 30px;  
+  z-index: 1;
+}
+.img-3>img{
+  height:75px;  
+}
+.img-4{
+  align-self: flex-start;
+ transform: rotate(90deg);
+}
+.img-4>img{
+  height:65px;  
+}
+.update{
+  font-size: 2rem; 
+  z-index: 1;
+  margin-top: -50px;
+}
+.update:hover, .update:focus{
+  color: rgb(252,76,98);
+  cursor: pointer;
+  text-decoration: none;
+}
+/*UPDATE*/
+.update-form{
+  margin-top: -25px;
+}
+.update-img-one{
+  margin-top: 20px;
+}
+.ch-avatar-cont{
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.ch-avatar-cont>img{
+  border-radius: 50%;
+  border: 3px solid rgb(2,200,167);
+  height: 300px;
+}
+.ch-avatar-cont>div{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.update-a{
+  margin: 10px 5px;
+  border: 2px solid rgb(252,76,98);
+  padding: 5px;
+  border-radius: 6px;
+}
+.update-btn{
+  background: url(../images/btn-turquesa.svg) no-repeat center center /cover;
+  height: 130px;
+  background-size: auto;
+}
+/*CREATE STORY*/
+.check-container{
+  display: flex;
+}
+input[type="checkbox"]{
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+/*CHANGE AVATAR*/
+.change-avatar{
+  text-align:center;
+}
+.inp-lab-change{
+  margin: 15px 0;
+}
+/*CREATE STORIE*/
+/*RADIO BUTTONS*/

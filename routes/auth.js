@@ -16,9 +16,7 @@ const uploadCloud = require('../config/cloudinary.js');
 
 // GET User Signup
 router.get('/signup', function (req, res, next) {
-  res.render('signup', {
-    layout: 'layout'
-  });
+  res.render('signup')
 });
 
 // POST User Signup
