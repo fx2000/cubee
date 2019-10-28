@@ -90,8 +90,7 @@ router.get('/:id', notLoggedIn, async (req, res, next) => {
   const created = formatDate(req.session.currentUser.createdAt);
 
   const user = await User.findOne({ _id: id });
-  console.log(user);
-  const stories = await Story.find({ author: id });
+  const stories = await Story.find({ author: id }).populate('author');
   res.render('users/view', { user, stories, birthday, created });
 });
 

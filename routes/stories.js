@@ -5,6 +5,7 @@ const router = express.Router();
 const moment = require('moment');
 
 // Load models
+const User = require('../models/User');
 const Story = require('../models/Story');
 
 // Load middleware
