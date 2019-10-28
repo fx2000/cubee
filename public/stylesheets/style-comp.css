@@ -1,4 +1,36 @@
+/*
+coral: (252,76,98)
+gris: 51,51,51)
+azul oscuro: (70,66,139)
+amarillo: (255,255,136)
+turquesa: (2,200,167)
+*/
+
 .my-nav-btn{
-    background-image: url(../images/btn-turquesa.svg);
-    background-size: 50px;
+   height: 50px;
+}
+.nav-logo{
+    height: 30px;
+}
+.my-ul-nav{
+    text-align: right;
+    margin-right: 15px;
+}
+.sub-menu{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.my-drop-menu{
+    background-color: rgb(70,66,139);
+    border-color: #fff;
+    text-align: right;
+    width: max-content;
+}
+.my-nav-a{
+    color: #fff;
+    font-size: 1.1rem;
+}
+.my-drop-img{
+    height: 30px;;
 }

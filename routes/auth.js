@@ -18,9 +18,7 @@ const uploadCloud = require('../config/cloudinary.js');
 
 // GET User Signup
 router.get('/signup', function (req, res, next) {
-  res.render('signup', {
-    layout: 'layout'
-  })
+  res.render('signup')
 });
 
 // POST User Signup
@@ -58,7 +56,7 @@ router.post('/signup', uploadCloud.single('avatar'), (req, res, next) => {
         .then(() => {
           // Create session cookie and redirect
           req.session.currentUser = user;
-          res.redirect('/')
+          res.redirect('/stories')
         })
         .catch((error) => { console.log(error) })
     })
@@ -67,9 +65,7 @@ router.post('/signup', uploadCloud.single('avatar'), (req, res, next) => {
 
 // GET User Login
 router.get('/login', function (req, res, next) {
-  res.render('login', {
-    layout: 'layout'
-  });
+  res.render('login');
 });
 
 // POST User Login

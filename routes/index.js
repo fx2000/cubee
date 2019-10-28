@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/welcome', function(req, res, next) {
-  res.render('index', {layout: 'layout'});
+  res.render('index');
 });
 module.exports = router;
 //coment
