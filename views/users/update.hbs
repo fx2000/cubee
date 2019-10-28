@@ -1,28 +1,44 @@
-<h1>UPDATE PROFILE</h1>
-<form action="/users/update" method="POST">
-  <label for="name">Name</label>
-  <input type="text" name="name" value="{{user.name}}">
-  <br />
-  <label for="lastName">Last Name</label>
-  <input type="text" name="lastName" value="{{user.lastName}}">
-  <br />
-  <label for="email">Email</label>
-  <input type="email" name="email" value="{{user.email}}">
-  <br />
-  <label for="birthday">Date of Birth</label>
-  <input type="date" name="birthday" value="{{birthday}}">
-  <br />
-  <label for="username">Username</label>
-  <input type="text" name="username" value="{{user.username}}">
-  <br />
-  <img src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}" height="300" width="300">
-  <br/>
-  <a href="/users/delete-avatar/{{user._id}}">Delete Avatar</a>
-  <a href="/users/change-avatar/">Change Avatar</a> <!-- TODO: Create this route -->
-  <br/>
-  <a href="/auth/change-password">Change my password</a><!-- TODO: Create this route -->
-  <br/>
-  <input type="submit" value="Update">
-</form>
-<p>{{error}}</p>
-<a href="/">Back...</a>
+{{>navbar}}
+<section class="login-container">
+  <h1>UPDATE PROFILE</h1>
+  <img class="img-one" src="/images/circ-mas-rallitas-dos.svg" alt=""> 
+  <form class="login-form" action="/users/update" method="POST">
+  <div class="inp-lab-container">
+      <div class="inp-lab">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{user.name}}">
+      </div>
+      <div class="inp-lab">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" value="{{user.lastName}}">
+      </div>
+      <div class="inp-lab">
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{user.email}}">
+      </div>
+      <div class="inp-lab">
+        <label for="birthday">Date of Birth</label>
+        <input type="date" name="birthday" value="{{birthday}}">
+      </div>
+      <div class="inp-lab">
+        <label for="username">Username</label>
+        <input type="text" name="username" value="{{user.username}}">
+      </div>
+      <div class="ch-avatar-cont">
+        <img src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}">
+        <div>
+          <a class="update-a" href="/users/delete-avatar/{{user._id}}">Delete Avatar</a>
+        <a class="update-a" href="/users/change-avatar/">Change Avatar</a> <!-- TODO: Create this route -->
+        </div>
+        <a class="update-a" href="/auth/change-password">Change my password</a><!-- TODO: Create this route -->
+      </div>
+      
+    </div>
+    <div class="btn-form-container">
+      <img class="img-three" src="/images/flecha-dos.svg" alt="">
+      <button class="form-btn" type="submit">Update</button>
+      <img class="img-two" src="/images/flecha-uno.svg" alt="">
+    </div>
+  </form>
+  <p>{{error}}</p>
+</section>
