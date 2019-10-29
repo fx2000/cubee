@@ -1,14 +1,19 @@
 {{>navbar}}
+<header class="stories-header">
+  <h1>A WORLD OF STORIES</h1>
+  <div>
+  <a href="/stories/create">Create a new story</a>
+    <form action="/stories/search" method="POST">
+      <input class="search" type="search" name="terms" placeholder="Search...">
+    </form>
+  </div>
+  
+</header>
 
-<h1>A WORLD OF STORIES</h1>
+<section class="user-stories-container">
+  {{#each stories}}
+  {{>story}}
+  {{/each}}
+</section>
 
-<a href="/stories/create">Create a new story</a>
-<form action="/stories/search" method="POST">
-  <input type="text" name="terms">
-  <input type="submit" value="Search">
-</form>
-
-{{#each stories}}
-{{>story}}
-{{/each}}
 <p>{{error}}</p>

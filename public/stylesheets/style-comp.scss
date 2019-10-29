@@ -19,6 +19,8 @@ body{
   background-color: rgb(70,66,139);
   max-width: 800px;
   margin: auto;
+  min-height: 100vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 button{
   border: none;
@@ -43,9 +45,20 @@ input, textarea{
 input:active, input:focus {
   border: 3px solid rgb(255,255,136);
 }
+h1{
+  font-family: 'Baloo Bhai', sans-serif;
+  color: rgb(252,76,98);
+
+}
 h2{
   font-family: 'Baloo Bhai';
   color: rgb(2,200,167);
+}
+h3{
+  font-family: 'Baloo Bhai', sans-serif;
+  font-size: 1.2rem;
+  color: rgb(2,200,167);
+  background-color: #fff;
 }
 a{
   font-family: 'Baloo Bhai';
@@ -73,6 +86,9 @@ a:hover, a:focus{
   text-decoration: none;
 }
 /*NAVBAR*/
+.my-nav{
+  justify-content: flex-end;
+}
 .my-nav-btn{
    height: 50px;
 }
@@ -99,7 +115,9 @@ a:hover, a:focus{
     font-size: 1.1rem;
 }
 .my-drop-img{
-    height: 30px;;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgb(2,200,167);
 }
 
 /*FORM HEADER*/
