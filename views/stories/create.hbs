@@ -1,7 +1,7 @@
 {{>navbar}}
 <section class="login-container">
   <img class="update-img-one img-one" src="/images/circ-mas-rallitas-dos.svg" alt="">
-  <form class="login-form" action="/stories/create" method="POST">
+  <form class="create-form login-form" action="/stories/create" method="POST">
     <h2>CREATE STORY</h2>
     
     <!-- Dice thrower -->
@@ -13,18 +13,18 @@
       </div>
       {{/each}}
     </div>
-
+  <div class="story-create-container">
     <div class="inp-lab-change inp-lab">
-      <label for="title">Title</label>
-      <input type="text" name="title" id="title" placeholder="Untitle">
+      <label class="create-lab" for="title">Title</label>
+      <input type="text" name="title" id="title" placeholder="Untitled">
     </div>
     <div class="inp-lab-change inp-lab">
-      <label for="content">Story</label>
+      <label class="create-lab" for="content">Story</label>
       <textarea class="story-text" name="content" id="content" placeholder="Your story goes here..."></textarea>
     </div>
     <div class="check-container">
       <div class="inp-lab-change inp-lab">
-        <label for="reserved">Private?</label>
+        <label class="create-lab" for="reserved">Private?</label>
         <div class="radio-group">
           <input type="radio" id="option-one" name="reserved" value="true" checked>
           <label class="radio-label" for="option-one">Yes</label>
@@ -33,8 +33,8 @@
         </div>
         
       </div>
-      <div class="inp-lab-change inp-lab">
-        <label for="restricted">Adults only?</label>
+      <div class="adults inp-lab-change inp-lab">
+        <label class="create-lab" for="restricted">Adults only?</label>
         <div class="radio-group">
           <input type="radio" id="option-three" name="restricted" value="true" checked>
           <label class="radio-label" for="option-three">Yes</label>
@@ -43,6 +43,8 @@
         </div>
       </div>
     </div>
+  </div>
+    
      
     <div class="btn-form-container">
       <img class="img-three" src="/images/flecha-dos.svg" alt="">

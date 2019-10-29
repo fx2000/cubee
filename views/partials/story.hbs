@@ -1,5 +1,6 @@
 
 <main class="card-container">
+  <h3>Score: {{score}}</h3>
   <header class="bg-white">
     <div class="bg-white">
       <h2 class="bg-white">{{title}}</h2>
@@ -22,7 +23,7 @@
         <p class="bg-white">Created by: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
       <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}"></a>
       </div>
-      <h3>Score: {{score}}</h3>
+      
     </div>  
     
   </section>
