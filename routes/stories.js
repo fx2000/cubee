@@ -3,7 +3,6 @@
 const express = require('express');
 const router = express.Router();
 const moment = require('moment');
-const formatDate = require('../helpers/formatDate');
 
 // Load models
 const Die = require('../models/Die');
@@ -19,12 +18,9 @@ const { notLoggedIn } = require('../middlewares/auth');
 router.get('/', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const stories = await Story.find().lean().populate('author dice');
-
   stories.forEach((story) => {
     story.relativeDate = moment(story.createdAt).fromNow();
-    story.created = formatDate(story.createdAt);
   });
-  console.log(stories);
   stories.reverse();
   res.render('stories/index', { user, stories });
 });

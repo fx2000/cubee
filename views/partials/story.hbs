@@ -53,4 +53,10 @@
     <h2>Score: {{score}}</h2>
   </section>
   <p class="bg-white">Created {{relativeDate}}</p>
+
+  <!-- Comment system here -->
+  <form action="/stories/comment/{{_id}}" method="POST" name="comment{{@index}}" id="comment{{@index}}">
+    <input type="text" name="comment" placeholder="Comment...">
+    <button class="btn-vote" form="comment{{@index}}">Post</button>
+  </form>
 </main>
