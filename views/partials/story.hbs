@@ -32,15 +32,15 @@
   </section>
   <section class="interaction-container bg-white">
     <div class="bg-white">
-      <a class="bg-white" href="/">Details & comments</a>
+      <a class="bg-white" href="/">Details & Comments</a>
     </div>
     <div class="normal-container">
 	<div class="smile-rating-container">
       <div class="smile-rating-toggle-container">
-        <form class="submit-rating" action="/stories/vote/{{_id}}" method="POST">
+        <form class="submit-rating" action="/stories/vote/{{_id}}" method="POST" name="vote" id="vote">
           <input id="meh"  name="vote" type="radio" value="up" /> 
           <input id="fun" name="vote" type="radio" value="down"/> 
-          <label for="meh" class="rating-label rating-label-meh">Bad</label>
+          <label for="meh" class="rating-label rating-label-meh"></label>
           <div class="smile-rating-toggle"></div>
           
           <div class="rating-eye rating-eye-left"></div>
@@ -49,20 +49,16 @@
           <div class="mouth rating-eye-bad-mouth"></div>
           
           <div class="toggle-rating-pill"></div>
-          <label for="fun" class="rating-label rating-label-fun">Fun</label>
-          <input type="submit" value="Vote">
+          <label for="fun" class="rating-label rating-label-fun"></label>
+        
+          
         </form>
       </div>
     </div>
   </div>
-    
+  <button class="btn-vote" form="vote">Vote!</button>
   </section>
+  <p class="bg-white">Time & Date: {{createdAt}}</p>
 </main>
 
 
-
-
-
-
-<p>Time & Date: {{createdAt}}</p>
-<br/>

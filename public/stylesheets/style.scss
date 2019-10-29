@@ -281,7 +281,6 @@ input[type=radio] {
 
 input[type=radio]:checked + label{
   color: lighten($bg,60%);
-  background: $fg;
 }
 .radio-group {
   border: solid $borderWidth $fg;
@@ -299,6 +298,9 @@ input[type=radio]:checked + label{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 7px;
 }
+.card-container>p{
+  margin: auto 20px;
+}
 .card-container>header{
     display: flex;
     justify-content: space-between;
@@ -307,7 +309,7 @@ input[type=radio]:checked + label{
 }
 .card-container>header>div>h2{
   text-transform: uppercase;
-  font-size: 3rem;
+  font-size: 2.3rem;
 }
 .bg-white{
     background-color: #fff;
@@ -342,15 +344,32 @@ input[type=radio]:checked + label{
 .interaction-container{
   display: flex;
 }
+.interaction-container>div{
+  margin: 0 20px 15px;
+}
+.interaction-container>div>a{
+  color: rgb(2,200,167);
+  font-size: 1.5rem;
+}
+.btn-vote{
+  background-color: rgb(2,200,167);
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 5px;
+  height: max-content;
+  margin-right: 40px;
+}
 /*UPVOTE DOWNVOTE*/
 $ratingGreyColor: #d0cccd;
 $ratingBlueColor: rgb(2,200,167);
 $ratingDarkColor: #555e63;
 
 .normal-container {
-  position: absolute;
+  
 	height: max-content;
-	width: max-content;
+  width: max-content;
+  background-color: transparent;
 }
 
 .smile-rating-container {
@@ -377,22 +396,28 @@ $ratingDarkColor: #555e63;
 	font-weight: bold;
 	cursor: pointer;
 	color: $ratingGreyColor;
-	transition: 500ms;
+  transition: 500ms;
+  background-color: transparent;
+  height: 30px;
 }
 .rating-label:hover, .rating-label:active {
 	color: $ratingGreyColor;
 }
 .rating-label-fun {
-	left: -58px;	
-	text-align: right;
+	left: -75px;	
+  text-align: right;
+  font-size: 1.1rem;
+  color: rgb(2,200,167);
 }
 .rating-label-meh {
-	left: 58px;	
-	text-align: left;
-	color: #fff;
+	left: 75px;	
+  text-align: left;
+  font-size: 1.1rem;
+	color: rgb(2,200,167);
 }
 .smile-rating-container input {
-	display: none;
+  display: none;
+  background-color: transparent;
 }
 
 .toggle-rating-pill {
@@ -403,7 +428,9 @@ $ratingDarkColor: #555e63;
 	border-radius: 500px;
 	transition: all 500ms;
 }
-
+.smile-rating-toggle-container{
+  background-color: transparent;
+}
 .smile-rating-toggle {
 	position: absolute;
 	width: 54px;
@@ -412,7 +439,8 @@ $ratingDarkColor: #555e63;
 	left: 182px;
 	border-radius: 500px;
 	transition: all 500ms;
-	z-index: 4;
+  z-index: 4;
+  background-color: transparent;
 }
 .rating-eye {
 	position: absolute;
@@ -486,16 +514,13 @@ $ratingDarkColor: #555e63;
 	border-left-color: rgba(1,1,1,0);
 	top: 42px;
 	left: 190px;
-	transition: all 500ms;
+  transition: all 500ms;
+  background-color: transparent;
 }
 
 /*
 Toggle Changes
 */
-
-#meh:checked~.rating-label-meh {
-	color: $ratingDarkColor;
-}
 #fun:checked~.rating-label-meh {
 	color: $ratingGreyColor;
 }
@@ -510,9 +535,6 @@ Toggle Changes
 	border-radius: 100%;
 }
 
-#fun:checked~.rating-label-fun {
-	color: $ratingDarkColor;
-}
 #fun:checked~.smile-rating-toggle {
 	left: 282px;
 }
@@ -535,23 +557,30 @@ Toggle Changes
 
 @media only screen and (max-width:524px) {
 	.normal-container {
-    position: absolute;
-		height: max-content;
-		width: max-content;
-	}
+    position: relative;
+		height: auto;
+    width:0;
+    top: -84px;
+    left: -98px;
+    transform: scale(0.6);
+    background-color: transparent;
+  }
+  
 	.smile-rating-container {
 		position: relative;
 		height: 10%;
 		width: 490px;
 		margin: auto;
 		font-family: 'Baloo Bhai', sans-serif;
-		top: 20%;
+    top: 20%;
+    background-color: transparent;
 	}
 
 	.submit-rating {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+    justify-content: center;
+    background-color: transparent;
 	}
 	.rating-label {
 		position: relative;
@@ -562,28 +591,34 @@ Toggle Changes
 		font-weight: bold;
 		cursor: pointer;
 		color: $ratingGreyColor;
-		transition: 500ms;
+    transition: 500ms;
+    background-color: transparent;
+    height: 30px;
 	}
 	.rating-label:hover, .rating-label:active {
 		color: $ratingGreyColor;
 	}
 	.rating-label-fun {
-		left: -58px;	
-		text-align: right;
+		left: -75px;	
+    text-align: right;
+    font-size: 1.1rem;
+    color: rgb(2,200,167);
 	}
 	.rating-label-meh {
-		left: 50px;	
-		text-align: left;
-		color: #FFF;
+		left: 75px;	
+    text-align: left;
+    font-size: 1.1rem;
+		color: rgb(2,200,167);
 	}
 	.smile-rating-container input {
-		display: none;
+    display: none;
+    background-color: transparent;
 	}
 
 	.toggle-rating-pill {
 		position: relative;
-		height: 65px;
-		width: 165px;
+		height: 55px;
+		width: 145px;
 		background: $ratingGreyColor;
 		border-radius: 500px;
 		transition: all 500ms;
@@ -591,10 +626,10 @@ Toggle Changes
 
 	.smile-rating-toggle {
 		position: absolute;
-		width: 54px;
-		height: 54px;
+		width: 44px;
+		height: 44px;
 		background-color: white;
-		left: 168px;
+		left: 178px;
 		border-radius: 500px;
 		transition: all 500ms;
 		z-index: 4;
@@ -628,16 +663,14 @@ Toggle Changes
 		border-left-color: rgba(1,1,1,0);
 		top: 42px;
 		left: 177px;
-		transition: all 500ms;
+    transition: all 500ms;
+    background-color: transparent;
 	}
 
 	/*
 	Toggle Changes
 	*/
 
-	#meh:checked~.rating-label-meh {
-		color: $ratingDarkColor;
-	}
 	#fun:checked~.rating-label-meh {
 		color: $ratingGreyColor;
 	}
@@ -652,9 +685,6 @@ Toggle Changes
 		border-radius: 100%;
 	}
 
-	#fun:checked~.rating-label-fun {
-		color: $ratingDarkColor;
-	}
 	#fun:checked~.smile-rating-toggle {
 		left: 266px;
 	}
