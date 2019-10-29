@@ -11,14 +11,10 @@ const hbs = require('hbs');
 const hbsutils = require('hbs-utils')(hbs);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-<<<<<<< HEAD
-const flash = require('connect-flash');
-=======
+
 const flash = require("connect-flash");
 const connect = require('connect')
 const sassMiddleware = require('node-sass-middleware')
-
->>>>>>> dev-i
 
 // Routes
 const indexRouter = require('./routes/index');
