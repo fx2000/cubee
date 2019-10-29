@@ -5,12 +5,15 @@
     <h2>CREATE STORY</h2>
     
     <!-- Dice thrower -->
-    <div>
+    <div class="create-dice-container">
       {{#each dice}}
-      <img src="{{this.icon}}" alt="Picture of {{this.name}}" width="25" height="25"  class="bg-white">
-      <input type="hidden" name="dice{{@index}}" value="{{this._id}}">
+      <div class="create-dice">  
+        <img src="{{this.icon}}" alt="Picture of {{this.name}}" class="bg-white">
+        <input type="hidden" name="dice{{@index}}" value="{{this._id}}"> 
+      </div>
       {{/each}}
     </div>
+
     <div class="inp-lab-change inp-lab">
       <label for="title">Title</label>
       <input type="text" name="title" id="title" placeholder="Untitle">
