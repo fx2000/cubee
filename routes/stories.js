@@ -5,7 +5,7 @@ const router = express.Router();
 const moment = require('moment');
 
 // Load models
-// const User = require('../models/User');
+const Die = require('../models/Die');
 const Story = require('../models/Story');
 
 // Load middleware
@@ -17,7 +17,7 @@ const { notLoggedIn } = require('../middlewares/auth');
 // GET View stories
 router.get('/', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  const stories = await Story.find().populate('author');
+  const stories = await Story.find().populate('author dice');
   stories.forEach((story) => {
     story.relativeDate = moment(story.createdAt).fromNow();
   });
@@ -25,22 +25,38 @@ router.get('/', notLoggedIn, async (req, res, next) => {
   res.render('stories/index', { user, stories });
 });
 
-// GET Create story
-router.get('/create', notLoggedIn, (req, res, next) => {
+// GET Create Story
+router.get('/create', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  res.render('stories/create', { user });
+  const dice = await Die.aggregate([
+    { $sample: { size: 9 } }
+  ]);
+  console.log(dice);
+  res.render('stories/create', { user, dice });
 });
 
 // POST Create story
 router.post('/create', notLoggedIn, async (req, res, next) => {
   const author = req.session.currentUser._id;
+  console.log(req.body);
   const { title, content, reserved, restricted } = req.body;
   const newStory = {
     title,
     content,
     author,
     restricted,
-    reserved
+    reserved,
+    dice: [
+      req.body.dice0,
+      req.body.dice1,
+      req.body.dice2,
+      req.body.dice3,
+      req.body.dice4,
+      req.body.dice5,
+      req.body.dice6,
+      req.body.dice7,
+      req.body.dice8
+    ]
   };
   await Story.create(newStory);
   res.redirect('/stories');
@@ -79,7 +95,7 @@ router.post('/comment/:id', notLoggedIn, async (req, res, next) => {
     comment: comment,
     date: new Date()
   });
-  res.redirect('/stories')
+  res.redirect('/stories');
 });
 
 // GET Story details
@@ -87,7 +103,7 @@ router.get('/details/:id', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const story = await Story.findById(user._id);
   res.render('stories/create', { user, story });
-})
+});
 
 // POST Search
 router.post('/search', notLoggedIn, async (req, res, next) => {

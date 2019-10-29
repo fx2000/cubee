@@ -30,7 +30,11 @@ const storySchema = new Schema({
     default: 1
   },
   narration: String,
-  tags: []
+  tags: [],
+  dice: [{
+    type: ObjectId,
+    ref: 'Die'
+  }]
 }, {
   timestamps: true
 });

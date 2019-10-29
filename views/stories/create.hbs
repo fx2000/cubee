@@ -1,9 +1,16 @@
 {{>navbar}}
 <section class="login-container">
-  <img class="update-img-one img-one" src="/images/circ-mas-rallitas-dos.svg" alt=""> 
-
+  <img class="update-img-one img-one" src="/images/circ-mas-rallitas-dos.svg" alt="">
   <form class="login-form" action="/stories/create" method="POST">
     <h2>CREATE STORY</h2>
+    
+    <!-- Dice thrower -->
+    <div>
+      {{#each dice}}
+      <img src="{{this.icon}}" alt="Picture of {{this.name}}" width="25" height="25"  class="bg-white">
+      <input type="hidden" name="dice{{@index}}" value="{{this._id}}">
+      {{/each}}
+    </div>
     <div class="inp-lab-change inp-lab">
       <label for="title">Title</label>
       <input type="text" name="title" id="title" placeholder="Story title">
