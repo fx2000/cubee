@@ -11,7 +11,14 @@ const hbs = require('hbs');
 const hbsutils = require('hbs-utils')(hbs);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+<<<<<<< HEAD
 const flash = require('connect-flash');
+=======
+const flash = require("connect-flash");
+const connect = require('connect')
+const sassMiddleware = require('node-sass-middleware')
+
+>>>>>>> dev-i
 
 // Routes
 const indexRouter = require('./routes/index');
@@ -52,7 +59,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbsutils.registerPartials(path.join(__dirname, '/views/partials'));
 hbsutils.registerWatchedPartials(path.join(__dirname, '/views/partials'));
-app.use(express.static(path.join(__dirname, 'public')));
+
 // app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 app.use(session({
@@ -65,6 +72,20 @@ app.use(session({
     ttl: 24 * 60 * 60 // 1 day
   })
 }));
+
+
+app.use(sassMiddleware({
+    /* Options */
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    debug: true,
+    sourceMap: true,
+    outputStyle: 'compressed'
+}));
+// Note: you must place sass-middleware *before* `express.static` or else it will
+// not work.
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);

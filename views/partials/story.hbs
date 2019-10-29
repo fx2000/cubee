@@ -1,18 +1,56 @@
-<form action="/stories/vote/{{_id}}" method="POST">
-  <input type="radio" name="vote" id="vote" value="up">Upvote
-  <input type="radio" name="vote" value="down">Downvote<br />
-  <input type="submit" value="Vote">
-</form>
-<h2>Score: {{score}}</h2>
-<h2>Title: {{title}}</h2>
-<p>Story: {{content}}</p>
-<p>Author: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
-<a href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}" width="100" height="100"></a>
-<p>Time & Date: {{createdAt}}</p>
-<br/>
-<h2>Dice:</h2>
+
+<main class="card-container">
+  <header class="bg-white">
+    <div class="bg-white">
+      <h2 class="bg-white">{{title}}</h2>
+    </div>
+    <div class="dice-container bg-white">
+      <h2>Dice:</h2>
 <ul>
 {{#each dice}}
 <img src="{{this.icon}}" alt="Picture of {{this.name}}" height="25" width="25" class="bg-white">
 {{/each}}
 </ul>
+        <div class="bg-white">
+          <div class="dice"></div>
+          <div class="dice"></div>
+          <div class="dice"></div>
+        </div>
+        <div class="bg-white">
+          <div class="dice"></div>
+          <div class="dice"></div>
+          <div class="dice"></div>
+        </div>
+        <div class="bg-white">
+          <div class="dice"></div>
+          <div class="dice"></div>
+          <div class="dice"></div>
+        </div>
+    </div>
+  </header>
+  <section class="story-container bg-white">
+    <article class="bg-white">
+      <p class="bg-white">{{content}}</p>
+    </article>
+    <div class="author-container bg-white">
+      <p class="bg-white">Created by: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
+      <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}"></a>
+    </div>  
+  </section>
+  <section class="interaction-container bg-white">
+    <div class="bg-white">
+      <a class="bg-white" href="/">Details & Comments</a>
+    </div>
+    <div class="radio-group">
+      <form action="/stories/vote/{{_id}}" method="POST" name="vote" id="vote">
+          <input type="radio" id="vote-ok" name="vote" value="up" checked>
+          <label class="radio-label" for="vote-ok"><img src="/images/heart.svg" alt=""></label>
+          <input type="radio" id="vote-no" name="vote" value="down">
+          <label class="radio-label" for="vote-no"><img src="/images/break-heart.svg" alt=""></label>
+       </form>
+        </div>
+    <button class="btn-vote" form="vote">Vote!</button>
+    <h2>Score: {{score}}</h2>
+  </section>
+  <p class="bg-white">Time & Date: {{createdAt}}</p>
+</main>
