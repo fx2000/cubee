@@ -113,7 +113,7 @@ router.post('/search', notLoggedIn, async (req, res, next) => {
   try {
     const stories = await Story.find({
       $text: { $search: terms }
-    }).populate('author');
+    }).populate('author dice');
     res.render('stories/index', { user, stories });
   } catch (error) {
     res.render('stories/index', { error: 'Something went wrong' });
