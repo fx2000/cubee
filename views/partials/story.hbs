@@ -26,8 +26,8 @@
       <p class="bg-white">{{content}}</p>
     </article>
     <div class="author-container bg-white">
+      <p class="bg-white">Created by: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
       <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}"></a>
-      <p class="bg-white">Author: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
     </div>  
   </section>
   <section class="interaction-container bg-white">

@@ -302,6 +302,12 @@ input[type=radio]:checked + label{
 .card-container>header{
     display: flex;
     justify-content: space-between;
+    margin: 15px 20px;
+    align-items: center;
+}
+.card-container>header>div>h2{
+  text-transform: uppercase;
+  font-size: 3rem;
 }
 .bg-white{
     background-color: #fff;
@@ -317,15 +323,34 @@ input[type=radio]:checked + label{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 5px;
 }
+.author-container{
+  display: flex;
+  margin: 15px 20px;
+  align-items: baseline;
+}
+.author-container>p>a{
+  font-size: 1rem;
+  color: rgb(2,200,167);
+  margin-left:10px;
+  margin-right: 10px;
+}
+.author-container>a>img{
+  height: 50px;
+  border: 2px solid rgb(2,200,167);
+  border-radius: 50%;
+}
+.interaction-container{
+  display: flex;
+}
 /*UPVOTE DOWNVOTE*/
 $ratingGreyColor: #d0cccd;
 $ratingBlueColor: rgb(2,200,167);
 $ratingDarkColor: #555e63;
 
 .normal-container {
-	position: absolute;
-	height: 100%;
-	width: 100%;
+  position: absolute;
+	height: max-content;
+	width: max-content;
 }
 
 .smile-rating-container {
@@ -510,9 +535,9 @@ Toggle Changes
 
 @media only screen and (max-width:524px) {
 	.normal-container {
-		position: absolute;
-		height: 100%;
-		width: 100%;
+    position: absolute;
+		height: max-content;
+		width: max-content;
 	}
 	.smile-rating-container {
 		position: relative;

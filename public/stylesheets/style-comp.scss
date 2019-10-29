@@ -17,6 +17,8 @@ body{
   font-family: Helvetica, sans-serif;
   font-size: 10px;
   background-color: rgb(70,66,139);
+  max-width: 800px;
+  margin: auto;
 }
 button{
   border: none;
@@ -50,6 +52,12 @@ a{
   color: #fff;
   text-decoration: none;
   font-size: 1.5rem;
+}
+article{
+  font-size: 1.1rem;
+  line-height: 27px;
+  margin: 15px 20px;
+  text-align: justify;
 }
 ul{
   display: flex;
