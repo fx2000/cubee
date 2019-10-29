@@ -11,17 +11,17 @@ turquesa: (2,200,167)
     display: flex;
     justify-content: center;
     align-items: center;
-   
   }
   .landing-img{
     height: 100vh;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
   .landing{
     height: max-content;
   }
   /*WELCOME*/
   .welcom-container{
-    margin-top:50px;
+    margin-top:75px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -34,11 +34,15 @@ turquesa: (2,200,167)
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    height: 100vh;
+  }
+  .welcome-container-two>div{
+    margin:0;
+    padding: 0;
+    height: max-content;
   }
   .welcome-container-two>div>img{
-    margin-top: 200x;
-    padding-top: 52%;
+    transform: scale(0.8);  
   }
   
   /*LOGIN-FORM*/
@@ -91,6 +95,9 @@ turquesa: (2,200,167)
     display: flex;
     flex-direction: column;
     margin-top: 3px;
+    max-width: 400px;
+    min-width: 300px;
+    align-self: center;
   }
   .img-two{
     transform: rotate(240deg);
@@ -128,10 +135,7 @@ turquesa: (2,200,167)
   }
   
   /*PROFILE VIEW*/
-  .users-view{
-    color: #fff;
-    font-size: 1.2rem;
-  }
+  
   .profile-header{
     display: flex;
     flex-direction: column;
@@ -178,6 +182,8 @@ turquesa: (2,200,167)
   }
   .profile-info>ul>li{
     margin: 10px 0;
+    color: #fff;
+    font-size: 1.2rem;
   }
   .profile-info>ul>li>span{
     font-family: 'Baloo Bhai';
@@ -208,6 +214,22 @@ turquesa: (2,200,167)
     color: rgb(252,76,98);
     cursor: pointer;
     text-decoration: none;
+  }
+  /*USER STORIES*/
+  .user-stories-container{
+    margin: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 5px solid rgb(252,76,98);
+    padding-top: 50px;
+  }
+  .user-stories-container{
+    margin: 20px;
+  }
+  .user-stories-container>h2{
+    font-size: 3rem;
+
   }
   /*UPDATE*/
   .update-form{
@@ -261,102 +283,173 @@ turquesa: (2,200,167)
   .story-text{
      min-height: 250px;
   }
-$bg: rgb(2,200,167);
-$fg: lighten($bg,20%);
-$borderWidth: 3px;
+  $bg: rgb(2,200,167);
+  $fg: lighten($bg,20%);
+  $borderWidth: 3px;
 
-input[type=radio] {
-  position: absolute;
-  visibility: hidden;
-  display: none;
-}
+  input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+  }
 
-.radio-label {
-  color: lighten($bg,40%);
-  display: inline-block;
-  cursor: pointer;
-  padding: 5px 5px;
-  font-size: 1.1rem;
-}
+  .radio-label {
+    color: lighten($bg,40%);
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 5px;
+    font-size: 1.1rem;
+  }
 
-input[type=radio]:checked + label{
-  color: lighten($bg,60%);
-}
-.radio-group {
-  border: solid $borderWidth $fg;
-  display: inline-block;
-  border-radius: 6px;
-  overflow: hidden;
-  width: max-content;
-  height: 38px;
-}
-/*STORIES CARD*/
-.card-container{
-    background-color: #fff;
+  input[type=radio]:checked + label{
+    color: lighten($bg,60%);
+  }
+  .radio-group {
+    border: solid $borderWidth $fg;
+    display: inline-block;
     border-radius: 6px;
-    margin: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    padding: 7px;
-}
-.card-container>p{
-  margin: auto 20px;
-}
-.card-container>header{
+    overflow: hidden;
+    width: max-content;
+    height: 38px;
+  }
+  .create-dice-container{
     display: flex;
-    justify-content: space-between;
-    margin: 15px 20px;
+    flex-wrap: wrap;
+  }
+  .create-dice{
+    height: 70px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
     align-items: center;
-}
-.card-container>header>div>h2{
-  text-transform: uppercase;
-  font-size: 2.3rem;
-}
-.bg-white{
-    background-color: #fff;
-}
-.dice-container{
-    display: flex;  
-}
-.dice{
-    height: 30px;
-    width: 30px;
+    padding: 2px;
     background-color: #fff;
     border-radius: 6px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin: 5px;
-}
-.author-container{
-  display: flex;
-  margin: 15px 20px;
-  align-items: baseline;
-}
-.author-container>p>a{
-  font-size: 1rem;
-  color: rgb(2,200,167);
-  margin-left:10px;
-  margin-right: 10px;
-}
-.author-container>a>img{
-  height: 50px;
-  border: 2px solid rgb(2,200,167);
-  border-radius: 50%;
-}
-.interaction-container{
-  display: flex;
-}
-.interaction-container>div{
-  margin: 0 20px 15px;
-}
-.interaction-container>div>a{
-  color: rgb(2,200,167);
-  font-size: 1.5rem;
-}
-.btn-vote{
-  background-color: rgb(2,200,167);
-  font-size: 1.1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  padding: 5px;
-  height: max-content;
-  margin-right: 40px;
-}
+  }
+  .create-dice>img{
+    max-width: 100%;
+    padding: 5px;
+  }
+  /*STORIES VIEW*/
+  .stories-header{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin: 20px;
+  }
+  .search{
+    color: rgb(2,200,167);
+    font-family: 'Baloo Bhai', sans-serif;
+    background-color: #fff;
+    max-width: 204px;
+  }
+  /*STORIES CARD*/
+  .card-container{
+      background-color: #fff;
+      border-radius: 6px;
+      margin: 20px 30px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      padding: 7px;
+      width:95%
+  }
+  .card-container>p{
+    margin: auto 20px;
+  }
+  .card-container>header{
+      display: flex;
+      justify-content: space-between;
+      margin: 15px 20px;
+      align-items: center;
+  }
+  .card-container>header>div>h2{
+    text-transform: uppercase;
+    font-size: 2.3rem;
+  }
+  .bg-white{
+      background-color: #fff;
+  }
+  .dice-container{
+      display: flex;  
+      height: 125px;
+      width: 125px;
+      flex-flow: column wrap;
+      justify-content: center;
+      align-items: center;
+  }
+  .dice{
+      height: 30px;
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin: 5px;
+  }
+  .author-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 20px;
+  }
+  .author-container>div{
+    display: flex;
+    margin: 15px 20px;
+    align-items: baseline;
+    background-color: #fff;
+  }
+  .author-container>div>p>a{
+    font-size: 1rem;
+    color: rgb(2,200,167);
+    margin-left:10px;
+    margin-right: 10px;
+  }
+  .author-container>div>a>img{
+    height: 50px;
+    border: 2px solid rgb(2,200,167);
+    border-radius: 50%;
+  }
+  .interaction-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .interaction-container>div{
+    margin: 15px auto;
+  }
+  .interaction-container>div>a{
+    color: rgb(2,200,167);
+    font-size: 1.5rem;
+  }
+  .btn-vote{
+    background-color: rgb(2,200,167);
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    padding: 5px;
+    height: max-content;
+    margin-top: 5px;
+  }
+  .score-form-container{
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    align-items: center;
+  }
+  .score-form>.radio-label{
+    background-color: #fff;
+    width: max-content;
+    color: rgba(51,51,51,0.6);
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px 5px;
+    font-size: 1.1rem;
+  }
+
+  input[type=radio]:checked + label{
+    color:rgb(2,200,167);
+  }
