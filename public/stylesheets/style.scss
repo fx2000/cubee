@@ -393,24 +393,6 @@ input[type=radio]:checked+label {
   flex-wrap: wrap;
 }
 
-.create-dice {
-  height: 70px;
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 2px;
-  background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 5px;
-}
-
-.create-dice>img {
-  max-width: 100%;
-  padding: 5px;
-}
-
 /*STORIES VIEW*/
 
 .stories-header {
