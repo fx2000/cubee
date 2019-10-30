@@ -7,8 +7,14 @@ const UserDiceSchema = new Schema({
         type: ObjectId,
         ref: 'User'
     },
-    icon: {type:Array, required: true},
-    name: String
+    icons: {
+        type: Array,
+        required: true
+    },
+    diceName: {
+        type: String,
+        default: 'Untitled'
+    }
 }, {
     collection: 'userDice'
 });

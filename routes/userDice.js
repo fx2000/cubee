@@ -29,8 +29,8 @@ router.post('/create-dice', notLoggedIn, uploadCloud.array('sides', 6), async (r
     console.log(urls)
     await UserDice.create({
         author: id,
-        icon: urls,
-        name: name
+        icons: urls,
+        diceName: name
     });
     res.redirect('/stories/');
 });

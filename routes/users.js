@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Story = require('../models/Story');
+const UserDice = require('../models/UserDice');
 const formatDate = require('../helpers/formatDate');
 
 // Cloudinary API
@@ -81,7 +82,8 @@ router.get('/:id', notLoggedIn, async (req, res, next) => {
 
   const user = await User.findOne({ _id: id });
   const stories = await Story.find({ author: id }).populate('author dice');
-  res.render('users/view', { user, stories, birthday, created });
+  const dices = await UserDice.find({ author: id });
+  res.render('users/view', { user, stories, birthday, created, dices });
 });
 
 module.exports = router;

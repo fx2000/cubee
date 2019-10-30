@@ -2,15 +2,15 @@
 <main class="users-view">
   <header class="profile-header">
     <div class="img-1">
-      <img  src="/images/round-star.svg" alt="">
+      <img src="/images/round-star.svg" alt="">
     </div>
-  
-    <img class="prof_avatar" src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}" >
+
+    <img class="prof_avatar" src="{{user.avatar}}" alt="Avatar of {{user.name}} {{user.lastName}}">
     <div>
       <p>{{user.username}}</p>
     </div>
     <div class="img-2">
-      <img  src="/images/round-two.svg" alt="">
+      <img src="/images/round-two.svg" alt="">
     </div>
   </header>
 
@@ -18,33 +18,42 @@
     <div class="img-3">
       <img src="/images/round-three.svg" alt="">
     </div>
-    
+
     <ul>
       <li> <span>Name:</span> {{user.name}} {{user.lastName}}</li>
       <li> <span>About me:</span> {{user.aboutMe}}</li>
       <li> <span>Email:</span> {{user.email}}</li>
       <li> <span>Date of Birth:</span> {{birthday}}</li>
       <li> <span>Member since:</span> {{created}}</li>
-    </ul> 
+    </ul>
     <div class="img-4">
       <img src="/images/circ-mas-rallitas.svg" alt="">
     </div>
-    
+
     <a class="update" href="/users/update">Update profile</a>
     <div class="img-5">
       <img src="/images/boom-two.svg" alt="">
     </div>
-    
+
+  </section>
+
+  <section class="user-dice-container user-stories-container">
+    <h2>{{user.username}}'s Dice</h2>
+    {{#each dices}}
+    {{>dice}}
+    {{/each}}
+
   </section>
 
   <section class="user-stories-container">
     <h2>{{user.username}}'s Stories</h2>
 
     {{#each stories}}
-      {{>story}}
+    {{>story}}
     {{/each}}
 
-    <button onclick="topFunction()" id="myBtn" title="Go to top"><img src="/images/flecha-arriba.svg" alt="arrow"></button>
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><img src="/images/flecha-arriba.svg"
+        alt="arrow"></button>
   </section>
 
 </main>
