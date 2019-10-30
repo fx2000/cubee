@@ -34,7 +34,8 @@ const storySchema = new Schema({
   dice: [{
     type: ObjectId,
     ref: 'Die'
-  }]
+  }],
+  userDice: []
 }, {
   timestamps: true
 });
