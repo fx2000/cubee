@@ -10,7 +10,9 @@ const Die = require('../models/Die');
 const Story = require('../models/Story');
 
 // Load middleware
-const { notLoggedIn } = require('../middlewares/auth');
+const {
+  notLoggedIn
+} = require('../middlewares/auth');
 
 // Cloudinary API
 // const uploadCloud = require('../config/cloudinary.js');
@@ -24,26 +26,38 @@ router.get('/', notLoggedIn, async (req, res, next) => {
     story.relativeDate = moment(story.createdAt).fromNow();
     story.created = formatDate(story.createdAt);
   });
-  console.log(stories);
   stories.reverse();
-  res.render('stories/index', { user, stories });
+  res.render('stories/index', {
+    user,
+    stories
+  });
 });
 
 // GET Create Story
 router.get('/create', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  const dice = await Die.aggregate([
-    { $sample: { size: 9 } }
-  ]);
-  console.log(dice);
-  res.render('stories/create', { user, dice });
+  const dice = await Die.aggregate([{
+    $sample: {
+      size: 9
+    }
+  }]);
+  //console.log(dice);
+  res.render('stories/create', {
+    user,
+    dice
+  });
 });
 
 // POST Create story
 router.post('/create', notLoggedIn, async (req, res, next) => {
   const author = req.session.currentUser._id;
-  console.log(req.body);
-  const { title, content, reserved, restricted } = req.body;
+  //console.log(req.body);
+  const {
+    title,
+    content,
+    reserved,
+    restricted
+  } = req.body;
   const newStory = {
     title,
     content,
@@ -68,30 +82,46 @@ router.post('/create', notLoggedIn, async (req, res, next) => {
 
 // POST Voting system
 router.post('/vote/:id', notLoggedIn, async (req, res, next) => {
-  const { id } = req.params;
-  const { vote } = req.body;
+  const {
+    id
+  } = req.params;
+  const {
+    vote
+  } = req.body;
   const user = req.session.currentUser;
   const score = (vote === 'up') ? 1 : -1;
   const story = await Story.findById(id);
 
   if (vote === 'up') {
-    story.votes.push({ user: user._id, vote: 1 });
+    story.votes.push({
+      user: user._id,
+      vote: 1
+    });
     story.save();
   } else if (vote === 'down') {
-    story.votes.push({ user: user._id, vote: -1 });
+    story.votes.push({
+      user: user._id,
+      vote: -1
+    });
     story.save();
   }
   await Story.findByIdAndUpdate(id, {
-    $inc: { score: score }
+    $inc: {
+      score: score
+    }
   });
   res.redirect('/stories');
 });
 
 // POST Add comment
 router.post('/comment/:id', notLoggedIn, async (req, res, next) => {
-  const { id } = req.params;
+  const {
+    id
+  } = req.params;
   const user = req.session.currentUser;
-  const { comment } = req.body;
+  const {
+    comment
+  } = req.body;
   const story = await Story.findById(id);
   story.comments.push({
     userId: user._id,
@@ -106,21 +136,33 @@ router.post('/comment/:id', notLoggedIn, async (req, res, next) => {
 router.get('/details/:id', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const story = await Story.findById(user._id);
-  res.render('stories/create', { user, story });
+  res.render('stories/create', {
+    user,
+    story
+  });
 });
 
 // POST Search
 router.post('/search', notLoggedIn, async (req, res, next) => {
-  const { terms } = req.body;
+  const {
+    terms
+  } = req.body;
   const user = req.session.currentUser;
 
   try {
     const stories = await Story.find({
-      $text: { $search: terms }
+      $text: {
+        $search: terms
+      }
     }).populate('author dice');
-    res.render('stories/index', { user, stories });
+    res.render('stories/index', {
+      user,
+      stories
+    });
   } catch (error) {
-    res.render('stories/index', { error: 'Something went wrong' });
+    res.render('stories/index', {
+      error: 'Something went wrong'
+    });
   }
 });
 
