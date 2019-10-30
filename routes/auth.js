@@ -54,6 +54,10 @@ router.post('/signup', uploadCloud.single('avatar'), async (req, res, next) => {
     if (req.file) {
       newUserDetails.avatar = req.file.url;
     }
+    // Check if user included about me information
+    if (req.body.aboutMe) {
+      newUserDetails.aboutMe = req.body.aboutMe;
+    }
     const newUser = await User.create(newUserDetails);
     req.session.currentUser = newUser;
     res.redirect('/stories');

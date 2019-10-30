@@ -13,9 +13,6 @@ const {
   notLoggedIn
 } = require('../middlewares/auth');
 
-// Cloudinary API
-// const uploadCloud = require('../config/cloudinary.js');
-
 // GET Index stories
 router.get('/', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
@@ -41,7 +38,6 @@ router.get('/create', notLoggedIn, async (req, res, next) => {
       size: 9
     }
   }]);
-  //console.log(dice);
   res.render('stories/create', {
     user,
     dice
@@ -51,7 +47,6 @@ router.get('/create', notLoggedIn, async (req, res, next) => {
 // POST Create story
 router.post('/create', notLoggedIn, async (req, res, next) => {
   const author = req.session.currentUser._id;
-  //console.log(req.body);
   const {
     title,
     content,
@@ -145,7 +140,6 @@ router.get('/view/:id', notLoggedIn, async (req, res, next) => {
   });
   story.comments.reverse();
   story.numComments = story.comments.length;
-  console.log(user, story);
   res.render('stories/view', { user, story });
 });
 
