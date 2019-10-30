@@ -60,7 +60,7 @@
 
 
   {{#each story.comments}}
-  
+
   <div class="card-container">
     <section class="story-container bg-white">
       <article class="bg-white">
@@ -69,8 +69,8 @@
       <div class="author-container bg-white">
         <div>
           <p class="bg-white">Posted {{this.relativeDate}} by: <a
-              href="/users/{{this.author._id}}">{{this.username}}</a></p>
-          <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.avatar}}"
+              href="/users/{{this.userId}}">{{this.username}}</a></p>
+          <a class="bg-white" href="/users/{{this.userId}}"><img src="{{this.avatar}}"
               alt="Avatar of {{this.username}}"></a>
         </div>
   
