@@ -11,7 +11,7 @@ cloudinary.config({
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
   folder: 'cubee/avatars',
-  allowedFormats: ['jpg', 'png'],
+  allowedFormats: ['jpg', 'png', 'svg'],
   discard_original_filename: true
 });
 

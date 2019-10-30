@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const Story = require('../models/Story');
+const UserDice = require('../models/UserDice');
 const formatDate = require('../helpers/formatDate');
 const moment = require('moment');
 
@@ -10,24 +11,44 @@ const uploadCloud = require('../config/cloudinary.js');
 // const { parser } = require('../config/cloudinary.js'); // TODO: Check if this is really necessary
 
 // Load middlewares
-const { notLoggedIn } = require('../middlewares/auth');
+const {
+  notLoggedIn
+} = require('../middlewares/auth');
 
 // GET User Update
 router.get('/update', notLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
   const birthday = formatDate(req.session.currentUser.birthday);
-  res.render('users/update', { user, birthday });
+  res.render('users/update', {
+    user,
+    birthday
+  });
 });
 
 // POST User update
 router.post('/update', notLoggedIn, async (req, res, next) => {
   let user = req.session.currentUser._id;
-  const { username, name, lastName, email, birthday } = req.body;
+  const {
+    username,
+    name,
+    lastName,
+    email,
+    birthday
+  } = req.body;
 
-  const checkUser = await User.findOne({ $or: [{ email: email }, { username: username }] });
+  const checkUser = await User.findOne({
+    $or: [{
+      email: email
+    }, {
+      username: username
+    }]
+  });
   // Check if the username or email address is already in use
   if (checkUser !== null) {
-    res.render('users/update', { user, error: 'That username/email is already in use' });
+    res.render('users/update', {
+      user,
+      error: 'That username/email is already in use'
+    });
   }
 
   await User.findByIdAndUpdate(user._id, {
@@ -45,7 +66,9 @@ router.post('/update', notLoggedIn, async (req, res, next) => {
 // GET Change avatar
 router.get('/change-avatar', notLoggedIn, (req, res, next) => {
   const user = req.session.currentUser;
-  res.render('users/change-avatar', { user });
+  res.render('users/change-avatar', {
+    user
+  });
 });
 
 // POST Change avatar
@@ -62,7 +85,9 @@ router.post('/change-avatar', notLoggedIn, uploadCloud.single('avatar'), async (
 
 // GET Delete avatar
 router.get('/delete-avatar/:id', notLoggedIn, async (req, res, next) => {
-  const { id } = req.params;
+  const {
+    id
+  } = req.params;
   const user = req.session.currentUser;
 
   if (id === user._id) {
@@ -71,24 +96,43 @@ router.get('/delete-avatar/:id', notLoggedIn, async (req, res, next) => {
     });
     res.redirect('/users/' + id);
   }
-  res.render('users/update', { user, error: 'Unauthorized' });
+  res.render('users/update', {
+    user,
+    error: 'Unauthorized'
+  });
 });
 
 // GET User profile
 router.get('/:id', notLoggedIn, async (req, res, next) => {
-  const { id } = req.params;
+  const {
+    id
+  } = req.params;
   const birthday = formatDate(req.session.currentUser.birthday);
   const created = formatDate(req.session.currentUser.createdAt);
 
-  const user = await User.findOne({ _id: id });
+  const user = await User.findOne({
+    _id: id
+  });
+  const dices = await UserDice.find({
+    author: id
+  });
+
 
   if (id === req.session.currentUser._id) {
-    const stories = await Story.find({ author: id }).lean().populate('author dice');
+    const stories = await Story.find({
+      author: id
+    }).lean().populate('author dice');
     stories.forEach((story) => {
       story.relativeDate = moment(story.createdAt).fromNow();
       story.numComments = story.comments.length;
     });
-    res.render('users/view', { user, stories, birthday, created });
+    res.render('users/view', {
+      user,
+      stories,
+      birthday,
+      created,
+      dices
+    });
   } else {
     const stories = await Story.find({
       author: id,
@@ -98,8 +142,15 @@ router.get('/:id', notLoggedIn, async (req, res, next) => {
       story.relativeDate = moment(story.createdAt).fromNow();
       story.numComments = story.comments.length;
     });
-    res.render('users/view', { user, stories, birthday, created });
+    res.render('users/view', {
+      user,
+      stories,
+      birthday,
+      created,
+      dices
+    });
   }
+
 });
 
 module.exports = router;
