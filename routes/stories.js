@@ -65,6 +65,8 @@ router.get('/create/:generic/:dices', notLoggedIn, async (req, res, next) => {
     _id: dice._id,
     icon: dice.icons[Math.floor(Math.random() * 5)]
   }))
+
+  console.log(dice)
   res.render('stories/create', {
     user,
     dice,
