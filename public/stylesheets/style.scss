@@ -200,10 +200,9 @@ turquesa: (2,200,167)
   }
   .img-4{
     align-self: flex-start;
-   transform: rotate(90deg);
   }
   .img-4>img{
-    height:65px;  
+    height:90px;  
   }
   .update{
     font-size: 2rem; 
@@ -276,9 +275,28 @@ turquesa: (2,200,167)
   }
   /*CREATE STORIE*/
   /*RADIO BUTTONS*/
+  .create-lab{
+    color: rgb(2,200,167);
+  }
+  .adults{
+    align-items: flex-end;
+  }
+  .create-form{
+    max-width: 400px;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .story-create-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .check-container{
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    max-width: 400px;
+    width: 100%
   }
   .story-text{
      min-height: 250px;
@@ -294,7 +312,7 @@ turquesa: (2,200,167)
   }
 
   .radio-label {
-    color: lighten($bg,40%);
+    color: rgba(143, 143, 143, 0.4);
     display: inline-block;
     cursor: pointer;
     padding: 5px 5px;
@@ -333,6 +351,7 @@ turquesa: (2,200,167)
     padding: 5px;
   }
   /*STORIES VIEW*/
+ 
   .stories-header{
     display: flex;
     flex-flow: row wrap;
@@ -353,6 +372,10 @@ turquesa: (2,200,167)
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       padding: 7px;
       width:95%
+  }
+  .card-container>h3{
+    text-align: right;
+    margin: 5px 20px;
   }
   .card-container>p{
     margin: auto 20px;
@@ -452,4 +475,28 @@ turquesa: (2,200,167)
 
   input[type=radio]:checked + label{
     color:rgb(2,200,167);
+  }
+
+  /*BACK TO TOP BUTTON*/
+  #myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 20px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: rgb(252,76,98); /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 10px; /* Some padding */
+    border-radius: 10px; /* Rounded corners */
+    font-size: 18px; /* Increase font size */
+  }
+  #myBtn>img{
+    width:30px;
+    background-color: transparent;
+  }
+  #myBtn:hover {
+    background-color: rgb(2,200,167); /* Add a dark-grey background on hover */
   }
