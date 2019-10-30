@@ -20,7 +20,7 @@
     </article>
     <div class="author-container bg-white">
       <div>
-        <p class="bg-white">Created by: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
+        <p class="bg-white">Created {{relativeDate}} by: <a href="/users/{{this.author._id}}">{{this.author.username}}</a></p>
       <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.author.avatar}}" alt="Avatar of {{this.author.username}}"></a>
       </div>
       
@@ -29,7 +29,7 @@
   </section>
   <section class="interaction-container bg-white">
     <div class="bg-white">
-      <a class="bg-white" href="/">Comments</a>
+      <a class="bg-white" href="/stories/view/{{_id}}">{{numComments}} Comment(s)</a>
     </div>
     <div class="score-form-container">
       <form class="score-form bg-white radio-group" action="/stories/vote/{{_id}}" method="POST" name="vote" id="vote">
@@ -41,11 +41,4 @@
       <button class="btn-vote" form="vote">Vote!</button>
     </div>
   </section>
-  <p class="bg-white">Created {{relativeDate}}</p>
-
-  <!-- Comment system here -->
-  <form action="/stories/comment/{{_id}}" method="POST" name="comment{{@index}}" id="comment{{@index}}">
-    <input type="text" name="comment" placeholder="Comment...">
-    <button class="btn-vote" form="comment{{@index}}">Post</button>
-  </form>
 </main>

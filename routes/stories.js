@@ -14,12 +14,13 @@ const { notLoggedIn } = require('../middlewares/auth');
 // Cloudinary API
 // const uploadCloud = require('../config/cloudinary.js');
 
-// GET View stories
+// GET Index stories
 router.get('/', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
   const stories = await Story.find().lean().populate('author dice');
   stories.forEach((story) => {
     story.relativeDate = moment(story.createdAt).fromNow();
+    story.numComments = story.comments.length;
   });
   stories.reverse();
   res.render('stories/index', { user, stories });
@@ -92,17 +93,26 @@ router.post('/comment/:id', notLoggedIn, async (req, res, next) => {
   story.comments.push({
     userId: user._id,
     username: user.username,
+    avatar: user.avatar,
     comment: comment,
     date: new Date()
   });
+  story.save();
   res.redirect('/stories');
 });
 
-// GET Story details
-router.get('/details/:id', notLoggedIn, async (req, res, next) => {
+// GET View story details
+router.get('/view/:id', notLoggedIn, async (req, res, next) => {
+  const { id } = req.params;
   const user = req.session.currentUser;
-  const story = await Story.findById(user._id);
-  res.render('stories/create', { user, story });
+  const story = await Story.findById(id).lean().populate('author dice');
+  story.relativeDate = moment(story.createdAt).fromNow();
+  story.comments.forEach((comment) => {
+    comment.relativeDate = moment(comment.date).fromNow();
+  });
+  story.numComments = story.comments.length;
+  console.log(user, story);
+  res.render('stories/view', { user, story });
 });
 
 // POST Search

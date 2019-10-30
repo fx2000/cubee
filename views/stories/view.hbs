@@ -1,0 +1,89 @@
+{{>navbar}}
+
+<section class="user-stories-container">
+  <div class="card-container">
+    <h3>Score: {{story.score}}</h3>
+    <header class="bg-white">
+      <div class="bg-white">
+        <h2 class="bg-white">{{story.title}}</h2>
+      </div>
+      <div class="dice-container bg-white">
+
+        {{#each story.dice}}
+        <div class="dice"><img src="{{this.icon}}" alt="Picture of {{this.name}}" height="25" width="25" class="bg-white">
+        </div>
+
+        {{/each}}
+
+      </div>
+    </header>
+    <section class="story-container bg-white">
+      <article class="bg-white">
+        <p class="bg-white">{{story.content}}</p>
+      </article>
+      <div class="author-container bg-white">
+        <div>
+          <p class="bg-white">Created {{story.relativeDate}} by: <a
+              href="/users/{{story.author._id}}">{{story.author.username}}</a></p>
+          <a class="bg-white" href="/users/{{story.author._id}}"><img src="{{story.author.avatar}}"
+              alt="Avatar of {{story.author.username}}"></a>
+        </div>
+
+      </div>
+
+    </section>
+    <section class="interaction-container bg-white">
+      <div class="bg-white">
+        <a class="bg-white" href="/stories/view/{{_id}}">{{story.numComments}} Comment(s)</a>
+      </div>
+      <div class="score-form-container">
+        <form class="score-form bg-white radio-group" action="/stories/vote/{{story._id}}" method="POST" name="vote" id="vote">
+          <input type="radio" id="vote-ok" name="vote" value="up" checked>
+          <label class="radio-label" for="vote-ok">Love</label>
+          <input type="radio" id="vote-no" name="vote" value="down">
+          <label class="radio-label" for="vote-no">Hate</label>
+        </form>
+        <button class="btn-vote" form="vote">Vote!</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Comment system -->
+  <section class="comment-container">
+    <form action="/stories/comment/{{story._id}}" method="POST" name="comment" id="comment">
+      <input type="text" name="comment" id="comment" placeholder="Comment...">
+      <button class="btn-vote" form="comment">Post</button>
+    </form>
+  
+    <p>{{error}}</p>
+  </section>
+
+
+  {{#each story.comments}}
+  
+  <div class="card-container">
+    <section class="story-container bg-white">
+      <article class="bg-white">
+        <p class="bg-white">{{this.comment}}</p>
+      </article>
+      <div class="author-container bg-white">
+        <div>
+          <p class="bg-white">Posted {{this.relativeDate}} by: <a
+              href="/users/{{this.author._id}}">{{this.username}}</a></p>
+          <a class="bg-white" href="/users/{{this.author._id}}"><img src="{{this.avatar}}"
+              alt="Avatar of {{this.username}}"></a>
+        </div>
+  
+      </div>
+  
+    </section>
+  </div>
+
+  {{/each}}
+
+
+</section>
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<p>{{error}}</p>
