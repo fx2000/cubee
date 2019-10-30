@@ -1,0 +1,25 @@
+{{>navbar}}
+<section class="login-container">
+    <form class="login-form" action="/stories/setup" method="POST">
+        <div class="inp-lab-container">
+            <div class="inp-lab">
+                <label for="generic">How many generic dices?</label>
+                <input type="number" name="generic" min='3' max='9'>
+            </div>
+            <div class="inp-lab">
+                <label for="dices">Do you want to use users dices? How many?</label>
+                <input type="number" name="dices" min='0' max='3'>
+            </div>
+        </div>
+
+        <div class="btn-form-container">
+            <img class="img-three" src="/images/flecha-dos.svg" alt="">
+            <button class="form-btn" type="submit">Continue</button>
+            <img class="img-two" src="/images/flecha-uno.svg" alt="">
+        </div>
+    </form>
+    <p>{{error}}</p>
+    <div>
+        <img src="/images/ranbow.svg" alt="">
+    </div>
+</section>

@@ -3,56 +3,62 @@
   <img class="update-img-one img-one" src="/images/circ-mas-rallitas-dos.svg" alt="">
   <form class="create-form login-form" action="/stories/create" method="POST">
     <h2>CREATE STORY</h2>
-    
+
     <!-- Dice thrower -->
     <div class="create-dice-container">
       {{#each dice}}
-      <div class="create-dice">  
+      <div class="create-dice">
         <img src="{{this.icon}}" alt="Picture of {{this.name}}" class="bg-white">
-        <input type="hidden" name="dice{{@index}}" value="{{this._id}}"> 
+        <input type="hidden" name="dice{{@index}}" value="{{this._id}}">
+      </div>
+      {{/each}}
+      {{#each dicesArray}}
+      <div class="create-dice">
+        <img src="{{this.icon}}" alt="" class="bg-white">
+        <input type="hidden" name="dicesArray" value="{{this.icon}}">
       </div>
       {{/each}}
     </div>
-  <div class="story-create-container">
-    <div class="inp-lab-change inp-lab">
-      <label class="create-lab" for="title">Title</label>
-      <input type="text" name="title" id="title" placeholder="Untitled">
-    </div>
-    <div class="inp-lab-change inp-lab">
-      <label class="create-lab" for="content">Story</label>
-      <textarea class="story-text" name="content" id="content" placeholder="Your story goes here..."></textarea>
-    </div>
-    <div class="check-container">
+    <div class="story-create-container">
       <div class="inp-lab-change inp-lab">
-        <label class="create-lab" for="reserved">Private?</label>
-        <div class="radio-group">
-          <input type="radio" id="option-one" name="reserved" value="true">
-          <label class="radio-label" for="option-one">Yes</label>
-          <input type="radio" id="option-two" name="reserved" value="false">
-          <label class="radio-label" for="option-two">No</label>
-        </div>
-        
+        <label class="create-lab" for="title">Title</label>
+        <input type="text" name="title" id="title" placeholder="Untitled">
       </div>
-      <div class="adults inp-lab-change inp-lab">
-        <label class="create-lab" for="restricted">Adults only?</label>
-        <div class="radio-group">
-          <input type="radio" id="option-three" name="restricted" value="true">
-          <label class="radio-label" for="option-three">Yes</label>
-          <input type="radio" id="option-four" name="restricted" value="false">
-          <label class="radio-label" for="option-four">No</label>
+      <div class="inp-lab-change inp-lab">
+        <label class="create-lab" for="content">Story</label>
+        <textarea class="story-text" name="content" id="content" placeholder="Your story goes here..."></textarea>
+      </div>
+      <div class="check-container">
+        <div class="inp-lab-change inp-lab">
+          <label class="create-lab" for="reserved">Private?</label>
+          <div class="radio-group">
+            <input type="radio" id="option-one" name="reserved" value="true">
+            <label class="radio-label" for="option-one">Yes</label>
+            <input type="radio" id="option-two" name="reserved" value="false">
+            <label class="radio-label" for="option-two">No</label>
+          </div>
+
+        </div>
+        <div class="adults inp-lab-change inp-lab">
+          <label class="create-lab" for="restricted">Adults only?</label>
+          <div class="radio-group">
+            <input type="radio" id="option-three" name="restricted" value="true">
+            <label class="radio-label" for="option-three">Yes</label>
+            <input type="radio" id="option-four" name="restricted" value="false">
+            <label class="radio-label" for="option-four">No</label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-    
-     
+
+
     <div class="btn-form-container">
       <img class="img-three" src="/images/flecha-dos.svg" alt="">
       <button class="update-btn" type="submit">Create!</button>
       <img class="img-two" src="/images/flecha-uno.svg" alt="">
     </div>
-    
+
   </form>
 
-<p>{{error}}</p>
+  <p>{{error}}</p>
 </section>

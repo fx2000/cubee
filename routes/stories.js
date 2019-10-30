@@ -7,6 +7,7 @@ const moment = require('moment');
 // Load models
 const Die = require('../models/Die');
 const Story = require('../models/Story');
+const UserDice = require('../models/UserDice');
 
 // Load middleware
 const {
@@ -19,32 +20,58 @@ const {
 // GET Index stories
 router.get('/', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  const stories = await Story.find(
-    { reserved: false }
-  ).lean().populate('author dice');
+  const stories = await Story.find({
+    reserved: false
+  }).lean().populate('author dice');
   stories.forEach((story) => {
     story.relativeDate = moment(story.createdAt).fromNow();
     story.numComments = story.comments.length;
   });
   stories.reverse();
+  console.log(stories.userDice)
   res.render('stories/index', {
     user,
     stories
   });
 });
+/*Setup create routes*/
+router.get('/setup', notLoggedIn, async (req, res, next) => {
+  res.render('stories/setup')
+})
 
+router.post('/setup', notLoggedIn, async (req, res, next) => {
+  const {
+    generic,
+    dices
+  } = req.body
+  res.redirect('create/' + generic + '/' + dices)
+})
 // GET Create Story
-router.get('/create', notLoggedIn, async (req, res, next) => {
+router.get('/create/:generic/:dices', notLoggedIn, async (req, res, next) => {
+  const {
+    generic,
+    dices
+  } = req.params
   const user = req.session.currentUser;
   const dice = await Die.aggregate([{
     $sample: {
-      size: 9
+      size: generic * 1
     }
   }]);
-  //console.log(dice);
+  const userDice = await UserDice.aggregate([{
+    $sample: {
+      size: dices * 1
+    }
+  }]);
+
+  const dicesArray = userDice.map(dice => new Object({
+    _id: dice._id,
+    icon: dice.icons[Math.floor(Math.random() * 5)]
+  }))
   res.render('stories/create', {
     user,
-    dice
+    dice,
+    dicesArray
   });
 });
 
@@ -56,8 +83,11 @@ router.post('/create', notLoggedIn, async (req, res, next) => {
     title,
     content,
     reserved,
-    restricted
+    restricted,
+    dicesArray
   } = req.body;
+  console.log(dicesArray)
+
   const newStory = {
     title,
     content,
@@ -74,8 +104,10 @@ router.post('/create', notLoggedIn, async (req, res, next) => {
       req.body.dice6,
       req.body.dice7,
       req.body.dice8
-    ]
+    ],
+    userDice: dicesArray
   };
+
   await Story.create(newStory);
   res.redirect('/stories');
 });
@@ -136,7 +168,9 @@ router.post('/comment/:id', notLoggedIn, async (req, res, next) => {
 
 // GET View story details
 router.get('/view/:id', notLoggedIn, async (req, res, next) => {
-  const { id } = req.params;
+  const {
+    id
+  } = req.params;
   const user = req.session.currentUser;
   const story = await Story.findById(id).lean().populate('author dice');
   story.relativeDate = moment(story.createdAt).fromNow();
@@ -146,7 +180,10 @@ router.get('/view/:id', notLoggedIn, async (req, res, next) => {
   story.comments.reverse();
   story.numComments = story.comments.length;
   console.log(user, story);
-  res.render('stories/view', { user, story });
+  res.render('stories/view', {
+    user,
+    story
+  });
 });
 
 // POST Search
