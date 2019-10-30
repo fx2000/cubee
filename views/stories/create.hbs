@@ -7,8 +7,14 @@
     <!-- Dice thrower -->
     <div class="create-dice-container">
       {{#each dice}}
-      <div class="create-dice">  
-        <img src="{{this.icon}}" alt="Picture of {{this.name}}" class="bg-white">
+      <div class="create-dice roll{{@index}}">  
+        <img src="http://cubeeapp.herokuapp.com/images/dice/1.png" alt="Picture of {{this.name}}" class="bg-white">
+        <img src="http://cubeeapp.herokuapp.com/images/dice/2.png" alt="Picture of {{this.name}}" class="bg-white">
+        <img src="http://cubeeapp.herokuapp.com/images/dice/4.png" class="bg-white">
+        <img src="{{this.icon}}" alt="Picture of {{this.name}}" alt="Picture of {{this.name}}" class="bg-white">
+        <img src="http://cubeeapp.herokuapp.com/images/dice/3.png" alt="Picture of {{this.name}}" class="bg-white">
+        <img src="http://cubeeapp.herokuapp.com/images/dice/5.png" alt="Picture of {{this.name}}" class="bg-white">
+        <img src="http://cubeeapp.herokuapp.com/images/dice/15.svg" alt="Picture of {{this.name}}" class="bg-white">
         <input type="hidden" name="dice{{@index}}" value="{{this._id}}"> 
       </div>
       {{/each}}
