@@ -81,12 +81,25 @@ router.get('/:id', notLoggedIn, async (req, res, next) => {
   const created = formatDate(req.session.currentUser.createdAt);
 
   const user = await User.findOne({ _id: id });
-  const stories = await Story.find({ author: id }).lean().populate('author dice');
-  stories.forEach((story) => {
-    story.relativeDate = moment(story.createdAt).fromNow();
-    story.numComments = story.comments.length;
-  });
-  res.render('users/view', { user, stories, birthday, created });
+
+  if (id === req.session.currentUser._id) {
+    const stories = await Story.find({ author: id }).lean().populate('author dice');
+    stories.forEach((story) => {
+      story.relativeDate = moment(story.createdAt).fromNow();
+      story.numComments = story.comments.length;
+    });
+    res.render('users/view', { user, stories, birthday, created });
+  } else {
+    const stories = await Story.find({
+      author: id,
+      reserved: false
+    }).lean().populate('author dice');
+    stories.forEach((story) => {
+      story.relativeDate = moment(story.createdAt).fromNow();
+      story.numComments = story.comments.length;
+    });
+    res.render('users/view', { user, stories, birthday, created });
+  }
 });
 
 module.exports = router;

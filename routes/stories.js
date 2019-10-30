@@ -17,7 +17,9 @@ const { notLoggedIn } = require('../middlewares/auth');
 // GET Index stories
 router.get('/', notLoggedIn, async (req, res, next) => {
   const user = req.session.currentUser;
-  const stories = await Story.find().lean().populate('author dice');
+  const stories = await Story.find(
+    { reserved: false }
+  ).lean().populate('author dice');
   stories.forEach((story) => {
     story.relativeDate = moment(story.createdAt).fromNow();
     story.numComments = story.comments.length;

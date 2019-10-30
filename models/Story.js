@@ -19,7 +19,7 @@ const storySchema = new Schema({
     type: Boolean,
     default: false
   },
-  private: {
+  reserved: {
     type: Boolean,
     default: false
   },
