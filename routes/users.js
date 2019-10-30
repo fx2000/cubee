@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/User');
 const Story = require('../models/Story');
 const formatDate = require('../helpers/formatDate');
+const moment = require('moment');
 
 // Cloudinary API
 const uploadCloud = require('../config/cloudinary.js');
@@ -80,7 +81,11 @@ router.get('/:id', notLoggedIn, async (req, res, next) => {
   const created = formatDate(req.session.currentUser.createdAt);
 
   const user = await User.findOne({ _id: id });
-  const stories = await Story.find({ author: id }).populate('author dice');
+  const stories = await Story.find({ author: id }).lean().populate('author dice');
+  stories.forEach((story) => {
+    story.relativeDate = moment(story.createdAt).fromNow();
+    story.numComments = story.comments.length;
+  });
   res.render('users/view', { user, stories, birthday, created });
 });
 

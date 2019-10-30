@@ -110,6 +110,7 @@ router.get('/view/:id', notLoggedIn, async (req, res, next) => {
   story.comments.forEach((comment) => {
     comment.relativeDate = moment(comment.date).fromNow();
   });
+  story.comments.reverse();
   story.numComments = story.comments.length;
   console.log(user, story);
   res.render('stories/view', { user, story });
