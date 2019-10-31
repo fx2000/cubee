@@ -1,43 +1,24 @@
 {{>navbar}}
 <section class="login-container">
-    <h2> Create your dice </h2>
+
     <form class="login-form" action="/stories/create-dice" method="POST" enctype="multipart/form-data">
-        <div class="inp-lab-container">
+        <h2 class="setup-h2"> Create your dice </h2>
+        <div class="inp-lab-container create-lab-container setup-lab-container">
             <div class="inp-lab">
-                <label for="name">Dice name:</label>
+                <label class="dice-label" for="name">Dice name:</label>
                 <input type="text" name="name" placeholder="Dice name">
             </div>
 
-            <h2>Upload images for the diferent sides os the dice</h2>
+            <h2 class="setup-h2">Upload images for the diferent sides os the dice</h2>
 
             <div class="inp-lab">
-                <label for="side1">Pick 6 sides</label>
+                <label class="dice-label" for="side1">Pick 6 sides</label>
                 <input multiple type="file" name="sides" id="side1" autocomplete="photo">
-            </div>{{!-- 
-            <div class="inp-lab">
-                <label for="side2">Side 2</label>
-                <input type="file" name="side2" id="side2" autocomplete="photo">
             </div>
-            <div class="inp-lab">
-                <label for="side3">Side 3</label>
-                <input type="file" name="side3" autocomplete="photo">
-            </div>
-            <div class="inp-lab">
-                <label for="side4">Side 4</label>
-                <input type="file" name="side4" autocomplete="photo">
-            </div>
-            <div class="inp-lab">
-                <label for="side5">Side 5</label>
-                <input type="file" name="side5" autocomplete="photo">
-            </div>
-            <div class="inp-lab">
-                <label for="side6">Side 6</label>
-                <input type="file" name="side6" autocomplete="photo">
-            </div> --}}
         </div>
         <div class="btn-form-container">
             <img class="img-three" src="/images/flecha-dos.svg" alt="">
-            <button class="form-btn" type="submit">Sign Up</button>
+            <button class="form-btn" type="submit">Create!</button>
             <img class="img-two" src="/images/flecha-uno.svg" alt="">
         </div>
     </form>

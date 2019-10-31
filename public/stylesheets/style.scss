@@ -15,7 +15,6 @@ turquesa: (2,200,167)
 
 .landing-img {
   height: 100vh;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .landing {
@@ -336,8 +335,6 @@ turquesa: (2,200,167)
 .create-form {
   max-width: 400px;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .story-create-container {
@@ -433,11 +430,18 @@ input[type=radio]:checked+label {
   justify-content: space-between;
   margin: 15px 20px;
   align-items: center;
+
+}
+
+.story-title {
+  max-width: 65%;
 }
 
 .card-container>header>div>h2 {
   text-transform: uppercase;
   font-size: 2.3rem;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .bg-white {
@@ -555,7 +559,7 @@ input[type=radio]:checked+label {
   /* Remove borders */
   outline: none;
   /* Remove outline */
-  background-color: rgb(252, 76, 98);
+  background-color: rgba(51, 51, 51, 0.6);
   /* Set a background color */
   color: white;
   /* Text color */
@@ -575,7 +579,7 @@ input[type=radio]:checked+label {
 }
 
 #myBtn:hover {
-  background-color: rgb(2, 200, 167);
+  background-color: rgba(2, 200, 167, 0.6);
   /* Add a dark-grey background on hover */
 }
 
@@ -584,7 +588,7 @@ input[type=radio]:checked+label {
 
 .sides-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   width: 95%;
 }
@@ -595,7 +599,7 @@ input[type=radio]:checked+label {
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 2px;
+  margin: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -615,4 +619,28 @@ input[type=radio]:checked+label {
   font-size: 2rem;
   margin-top: 30px;
   margin-left: 20px;
+}
+
+/*COMMENTS*/
+.btn-post {
+  height: 35px;
+}
+
+/*RANDOM ARREGLOS*/
+.setup-label {
+  color: rgb(2, 200, 167);
+  margin-top: 40px;
+}
+
+.setup-lab-container {
+  margin-bottom: 50px;
+}
+
+.setup-h2 {
+  color: #fff;
+  margin-top: 40px;
+}
+
+.dice-label {
+  color: rgb(2, 200, 167);
 }
